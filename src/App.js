@@ -75,7 +75,6 @@ const App = () => {
           setIndex={setIndex}
           pokemon={pokemon}
           setPokemon={setPokemon}
-          x={pokemon[index - 1]}
         />
       )}
       {searchField == [] && index < 0 && (
