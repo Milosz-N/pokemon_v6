@@ -4,6 +4,7 @@ function Evolution({ current, pokemon, setIndex }) {
     const [first, setFirst] = useState('');
     const [second, setSecond] = useState('');
     const [third, setThird] = useState('')
+    useEffect(()=>{console.log(pokemon)},[pokemon])
     useEffect(() => {
         if (current.evolution !== "") {
           fetch(`${current.evolution}`)
@@ -19,6 +20,7 @@ function Evolution({ current, pokemon, setIndex }) {
               if( values.chain.evolves_to.length > 0)
               {
             //    console.log('tablica z drugimi')
+                console.log(values.chain.evolves_to);
                 setSecond(values.chain.evolves_to.map(element=>{
                     return element.species.name
                 }))
@@ -55,6 +57,9 @@ function Evolution({ current, pokemon, setIndex }) {
         margin:(second.length > 4 || third.length > 4) && 'auto 10px auto 10px',
         
 
+      }}
+      onClick={() => {
+        setIndex((pokemon.find((element) => element.name == first).id));
       }}
       >
       {first != ''&& (<> <img
@@ -102,6 +107,9 @@ function Evolution({ current, pokemon, setIndex }) {
 
             
                   }}
+                  onClick={() => {
+                    setIndex((pokemon.find((element) => element.name == x).id));
+                  }}
                 >
                      <img
                      style={{
@@ -139,6 +147,9 @@ function Evolution({ current, pokemon, setIndex }) {
                     width: (second.length > 4 || third.length > 4) && '120px',
                     height:(second.length > 4 || third.length > 4) && '120px',
             
+                  }}
+                  onClick={() => {
+                    setIndex((pokemon.find((element) => element.name == x).id));
                   }}
                 >
             <img
