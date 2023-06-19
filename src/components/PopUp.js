@@ -51,8 +51,8 @@ function PopUp({ index, setIndex, pokemon, setPokemon }) {
         .then(res => res.json())
         .catch(ex => ex)
         .then(values => {
-types.push(element.name);
-console.log(values)
+// types.push(element.name);
+// console.log(values)
 const newState = (pokemon.map((obj, index) => {
   if (index == Number.parseInt(current.id - 1)) {
     return {
@@ -79,7 +79,7 @@ setPokemon(newState)
   console.log(pokemon)
   return (
     <div className="container-popUp">
-      <div className="header">
+<header>
         <div>
           {pokemon[current.id - 2] != undefined && (
             <button
@@ -130,7 +130,7 @@ setPokemon(newState)
             </button>
           )}
         </div>
-      </div>
+      </header>
       <span
         onClick={() => {
           setIndex(-1);
@@ -141,7 +141,7 @@ setPokemon(newState)
       <img
         className="description-img"
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${current.id}.png`}
-        // key={`${element.id}`}
+        style={{backgroundColor: `${current.color}`, borderRadius: '30px'}}
       />
       <div className="description">
         <legend>Height</legend>

@@ -96,7 +96,7 @@ margin-bottom: 25px;
     background-color: red;
   }
 
-  .header{
+  header{
     width: 90%;
 display: flex;
 flex-wrap: wrap;
@@ -104,6 +104,8 @@ justify-content: space-between;
 div:nth-child(1), div:nth-child(3){
     width: 25%;
     display: flex;
+    background-color: $blue;
+    border-radius: 30px;
 }
 
 div:nth-child(2){
