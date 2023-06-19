@@ -21,10 +21,10 @@ const App = () => {
       abilities: [],
       types: [],
       stats: [],
+      damage: []
     })
   );
   const [listItems, setListItems] = useState(50);
-
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1010`)
       .then((response) => response.json())
@@ -43,9 +43,8 @@ const App = () => {
       });
   }, []);
   useEffect(() => {
-    var arr = [];
     const newFilteredPokemon = pokemon.filter((item) => {
-      return (item.name.toLocaleLowerCase().includes(searchField));
+      return item.name.toLocaleLowerCase().includes(searchField);
     });
 
     setFilteredPokemon(newFilteredPokemon);
@@ -64,7 +63,6 @@ const App = () => {
 
       <List
         pokemon={filteredPokemon}
-        searchField={searchField}
         listItems={listItems}
         setIndex={setIndex}
       />
@@ -75,23 +73,20 @@ const App = () => {
           setIndex={setIndex}
           pokemon={pokemon}
           setPokemon={setPokemon}
-          x={pokemon[index - 1]}
         />
       )}
       {searchField == [] && index < 0 && (
         <div
-        style={{width: '100%',display:'flex' ,justifyContent: 'center'}}
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
         >
-        <button
-          className="btn-next"
-          onClick={() => setListItems(listItems + 50)}
-        >
-          Show more...
-        </button>
+          <button
+            className="btn-next"
+            onClick={() => setListItems(listItems + 50)}
+          >
+            Show more...
+          </button>
         </div>
-
-      )
-      }
+      )}
     </div>
   );
 };
