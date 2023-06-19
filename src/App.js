@@ -21,9 +21,15 @@ const App = () => {
       abilities: [],
       types: [],
       stats: [],
-      damage: []
+      damage: [],
+      evolution_obj: {
+        first: '',
+        second: [],
+        third: []
+      }
     })
   );
+  
   const [listItems, setListItems] = useState(50);
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1010`)

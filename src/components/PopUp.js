@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Evolution from "./Evolution";
 function PopUp({ index, setIndex, pokemon, setPokemon }) {
   const current = pokemon.find((element) => element.id == index);
-  var types = [];
   useEffect(() => {
     var color = "";
     var evolution = "";
@@ -42,9 +41,8 @@ function PopUp({ index, setIndex, pokemon, setPokemon }) {
 
 
   useEffect(() => {
-    console.log(current.damage)
+    // console.log(current.damage)
     if (current.types.length > 0 && current.damage.length  == 0) {
-      console.log(current.id === 1);
       current.types.map(element => {
         // console.log(element.type.url)
         fetch(`${element.type.url}`)
@@ -76,7 +74,7 @@ setPokemon(newState)
     }
    
   }, [current]);
-  console.log(pokemon)
+  // console.log(pokemon)
   return (
     <div className="container-popUp">
 <header>
@@ -145,9 +143,9 @@ setPokemon(newState)
       />
       <div className="description">
         <legend>Height</legend>
-        <h2>{current.height}</h2>
+        <h2>{Number.parseFloat(current.height/10).toFixed(1) + "m "}</h2>
         <legend>Weight</legend>
-        <h2>{current.weight}</h2>
+        <h2>{Number.parseFloat(current.weight/10).toFixed(1) + 'kg ' + Number.parseFloat(current.height * 2.20462262).toFixed(1)+ 'lbs'}</h2>
         <div className="container-abilities">
         <legend>Type</legend>
 
@@ -197,7 +195,7 @@ setPokemon(newState)
           );
         })}
       </section>
-      <Evolution current={current} pokemon={pokemon} setIndex={setIndex} />
+      <Evolution current={current} pokemon={pokemon} setIndex={setIndex} setPokemon={setPokemon} index={index} />
     </div>
   );
 }
