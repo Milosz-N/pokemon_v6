@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-function Evolution({ current, pokemon, setIndex, setPokemon }) {
+function Evolution({ current, pokemon, setIndex, setPokemon, index }) {
   // console.log(pokemon);
   const [first, setFirst] = useState("");
   const [second, setSecond] = useState("");
   const [third, setThird] = useState("");
-  
   
   useEffect(() => {
     if (current.evolution !== "") {
@@ -19,25 +18,33 @@ function Evolution({ current, pokemon, setIndex, setPokemon }) {
             setFirst(values.chain.species.name);
           }
           if (values.chain.evolves_to.length > 0) {
-            //    console.log('tablica z drugimi')
-            // console.log(values.chain.evolves_to);
+     
             setSecond(
               values.chain.evolves_to.map((element) => {
                 return element.species.name;
               })
             );
-            if (values.chain.evolves_to[0].evolves_to.length > 0) {
-              // console.log('trzecie');
-              // console.log(values.chain.evolves_to[0].evolves_to);
-              setThird(
-                values.chain.evolves_to[0].evolves_to.map((element) => {
-                  return element.species.name;
-                })
-              );
-            }
+          
           }
+          else{
+            setSecond('')
+          }
+
+          if (values.chain.evolves_to[0].evolves_to.length > 0) {
+          
+            setThird(
+              values.chain.evolves_to[0].evolves_to.map((element) => {
+                return element.species.name;
+              })
+            );
+          }
+          else{
+            setThird('')
+          }
+
         });
-    }
+    
+      }
   }, [current]);
   return (
     <div
@@ -45,10 +52,15 @@ function Evolution({ current, pokemon, setIndex, setPokemon }) {
       style={{
         justifyContent: second.length < 1 && "unset",
       }}
+    
     >
-      <h2 style={{ width: "100%" }}>Evolution</h2>
+      <h2 style={{ width: "100%" }}
+      key='asfsdf'
+      >Evolution</h2>
 
-      <div className="first-evolution">
+      <div className="first-evolution"
+      
+      >
         <button
           className="button-evolution"
           style={{

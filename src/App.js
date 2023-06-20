@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import List from "./components/List";
 import PopUp from "./components/PopUp.js";
 import "../src/components/scss/main.scss";
@@ -22,11 +22,8 @@ const App = () => {
       types: [],
       stats: [],
       damage: [],
-      evolution_obj: {
-        first: '',
-        second: [],
-        third: []
-      }
+     evolution_array: ''
+     
     })
   );
   
@@ -66,12 +63,14 @@ const App = () => {
         onChange={onSearchChange}
         placeholder="Search by Name"
       />
+      <Suspense fallback={<h2>czekaj</h2>}>
 
       <List
         pokemon={filteredPokemon}
         listItems={listItems}
         setIndex={setIndex}
       />
+      </Suspense>
 
       {index > 0 && (
         <PopUp
@@ -81,7 +80,7 @@ const App = () => {
           setPokemon={setPokemon}
         />
       )}
-      {searchField == [] && index < 0 && (
+      {searchField == []  && (
         <div
           style={{ width: "100%", display: "flex", justifyContent: "center" }}
         >

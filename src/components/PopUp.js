@@ -4,7 +4,10 @@ import React, { useEffect, useState } from "react";
 import Evolution from "./Evolution";
 function PopUp({ index, setIndex, pokemon, setPokemon }) {
   const current = pokemon.find((element) => element.id == index);
-  useEffect(() => {
+ 
+useEffect(()=>{
+  if(current.color == '' && current.weight ==''){
+    // console.log('robie fetch')
     var color = "";
     var evolution = "";
     fetch(`https://pokeapi.co/api/v2/pokemon-species/${index}`)
@@ -37,20 +40,18 @@ function PopUp({ index, setIndex, pokemon, setPokemon }) {
 
         setPokemon(newState);
       });
-  }, [index]);
-
+  }
+},[index])
 
   useEffect(() => {
     // console.log(current.damage)
     if (current.types.length > 0 && current.damage.length  == 0) {
       current.types.map(element => {
-        // console.log(element.type.url)
         fetch(`${element.type.url}`)
         .then(res => res.json())
         .catch(ex => ex)
         .then(values => {
-// types.push(element.name);
-// console.log(values)
+
 const newState = (pokemon.map((obj, index) => {
   if (index == Number.parseInt(current.id - 1)) {
     return {
@@ -61,24 +62,45 @@ const newState = (pokemon.map((obj, index) => {
 
   return obj;
 }))
-
-// console.log(newState)
 setPokemon(newState)    
- 
-
 }
-
 )
 })
-   
     }
    
   }, [current]);
+  useEffect(() => {
+    // console.log(current.damage)
+    if (current.evolution !== ``) {
+      fetch(`${current.evolution}`)
+        .then((res) => res.json())
+        .catch((ex) => ex)
+        .then((values) => {
+          // console.log(values.chain.species.name)
+          const newState = (pokemon.map((obj, index) => {
+            if (Number.parseInt(index) == Number.parseInt(current.id - 1)) {
+              // console.log('sgsg')
+              return {
+                ...obj,
+                evolution_array: values
+              };
+            }
+          
+            return obj;
+          }))
+          setPokemon(newState)    
+          
+        })
+    }
+   console.log(pokemon)
+  }, [current.evolution]);
   // console.log(pokemon)
   return (
-    <div className="container-popUp">
+    <div className="container-popUp                                                                                           ">
 <header>
-        <div>
+        <div
+        key ='sgfdgdfg'
+        >
           {pokemon[current.id - 2] != undefined && (
             <button
               className="btn-small"
@@ -101,7 +123,7 @@ setPokemon(newState)
             </button>
           )}
         </div>
-        <div>
+        <div key='sdgsfgdfgdfgdfg'>
           <h1>
             {current.name} #{current.id}
           </h1>
@@ -141,16 +163,22 @@ setPokemon(newState)
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${current.id}.png`}
         style={{backgroundColor: `${current.color}`, borderRadius: '30px'}}
       />
-      <div className="description">
+      <div className="description"
+      key='sdfsdf'
+      >
         <legend>Height</legend>
-        <h2>{Number.parseFloat(current.height/10).toFixed(1) + "m "}</h2>
+        {/* 3.2808399  */}
+        <h2 key ={Number.parseFloat(current.height/10).toFixed(1) + current.name}> {(Number.isInteger(current.height/10) ?  Number.parseInt(current.height/10)  : Number.parseFloat(current.height/10).toFixed(1))+' m ' +(Number.isInteger((current.height*3.2808399)/10) ?  Number.parseInt((current.height*3.2808399)/10)  : Number.parseFloat((current.height*3.2808399)/10).toFixed(1)) + ' ft' }</h2>
         <legend>Weight</legend>
-        <h2>{Number.parseFloat(current.weight/10).toFixed(1) + 'kg ' + Number.parseFloat(current.height * 2.20462262).toFixed(1)+ 'lbs'}</h2>
+        <h2 key=
+        {Number.parseFloat(current.weight/10).toFixed(1)}>{(Number.isInteger(current.weight/10) ? Number.parseInt(current.weight/10) : Number.parseFloat(current.weight/10).toFixed(1)) + ' kg '}
+                                                           {(Number.isInteger((current.weight * 2.20462262)/10) ? Number.parseFloat((current.weight * 2.20462262)/10) : Number.parseFloat((current.weight*2.20462262)/10).toFixed(1)) + ' lbs'}   </h2>
+
         <div className="container-abilities">
         <legend>Type</legend>
 
           {current.types.map((element) => {
-            return (<h2 className="abilities">{element.type.name}</h2> );
+            return (<h2 className="abilities" key={element.type.name}>{element.type.name}</h2> );
           })}
         </div>
         <div className="container-abilities">
@@ -158,7 +186,7 @@ setPokemon(newState)
 
           {current.abilities.map((element) => {
             return (
-               <h2 className="abilities">{element.ability.name}</h2>
+               <h2 className="abilities" key={element.ability.name}>{element.ability.name}</h2>
            );
           })}
           </div>
@@ -167,7 +195,7 @@ setPokemon(newState)
 
           {current.damage.map((element) => {
             return (
-               <h2 className="abilities">{element}</h2>
+               <h2 className="abilities" key={element}>{element}</h2>
            );
           })}
           </div>
@@ -196,6 +224,7 @@ setPokemon(newState)
         })}
       </section>
       <Evolution current={current} pokemon={pokemon} setIndex={setIndex} setPokemon={setPokemon} index={index} />
+  
     </div>
   );
 }

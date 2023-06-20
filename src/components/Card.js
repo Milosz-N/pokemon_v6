@@ -5,7 +5,7 @@ import "../components/scss/main.scss";
 function Card({ element, setIndex }) {
   const [color, setColor] = useState("");
   useEffect(() => {
-    if (element.id != "") {
+    if (element.id != "" && element.color == '') {
       fetch(`https://pokeapi.co/api/v2/pokemon-species/${element.id}`)
         .then((res) => res.json())
         .catch((ex) => ex)
