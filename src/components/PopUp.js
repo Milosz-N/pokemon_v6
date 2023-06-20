@@ -98,7 +98,6 @@ setPokemon(newState)
     <div className="container-popUp                                                                                           ">
 <header>
         <div
-        key ='sgfdgdfg'
         >
           {pokemon[current.id - 2] != undefined && (
             <button
@@ -122,7 +121,7 @@ setPokemon(newState)
             </button>
           )}
         </div>
-        <div key='sdgsfgdfgdfgdfg'>
+        <div>
           <h1>
             {current.name} #{current.id}
           </h1>
@@ -163,7 +162,6 @@ setPokemon(newState)
         style={{backgroundColor: `${current.color}`, borderRadius: '30px'}}
       />
       <div className="description"
-      key='sdfsdf'
       >
         <legend>Height</legend>
         {/* 3.2808399  */}
