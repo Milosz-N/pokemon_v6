@@ -92,7 +92,6 @@ setPokemon(newState)
           
         })
     }
-   console.log(pokemon)
   }, [current.evolution]);
   // console.log(pokemon)
   return (
