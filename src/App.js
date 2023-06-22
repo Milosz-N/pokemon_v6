@@ -22,7 +22,6 @@ const App = () => {
       types: [],
       stats: [],
       damage: [],
-     evolution_array: ''
      
     })
   );
@@ -63,14 +62,12 @@ const App = () => {
         onChange={onSearchChange}
         placeholder="Search by Name"
       />
-      <Suspense fallback={<h2>czekaj</h2>}>
 
       <List
         pokemon={filteredPokemon}
         listItems={listItems}
         setIndex={setIndex}
       />
-      </Suspense>
 
       {index > 0 && (
         <PopUp
@@ -90,6 +87,7 @@ const App = () => {
           >
             Show more...
           </button>
+    
         </div>
       )}
     </div>

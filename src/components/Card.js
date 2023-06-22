@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // import "../components/scss/mainn.scss";
 import "../components/scss/main.scss";
 
-function Card({ element, setIndex }) {
+function Card({ element, setIndex, setPokemon }) {
   const [color, setColor] = useState("");
   useEffect(() => {
     if (element.id != "" && element.color == '') {
@@ -11,8 +11,12 @@ function Card({ element, setIndex }) {
         .catch((ex) => ex)
         .then((values) => {
           setColor(values.color.name);
+          
+
         });
     }
+    
+    // console.log(pokemon)
   }, [element]);
   return (
     <button

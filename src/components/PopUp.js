@@ -2,11 +2,12 @@ import "../components/scss/main.scss";
 
 import React, { useEffect, useState } from "react";
 import Evolution from "./Evolution";
+import Poptest from "./Poptest";
 function PopUp({ index, setIndex, pokemon, setPokemon }) {
   const current = pokemon.find((element) => element.id == index);
  
 useEffect(()=>{
-  if(current.color == '' && current.weight ==''){
+  if(current.color == '' && current.height ==''){
     // console.log('robie fetch')
     var color = "";
     var evolution = "";
@@ -14,6 +15,7 @@ useEffect(()=>{
       .then((res) => res.json())
       .catch((ex) => ex)
       .then((values) => {
+        // console.log(values)
         color = values.color.name;
         evolution = values.evolution_chain.url;
       });
@@ -221,7 +223,7 @@ setPokemon(newState)
         })}
       </section>
       <Evolution current={current} pokemon={pokemon} setIndex={setIndex} setPokemon={setPokemon} index={index} />
-  
+        <Poptest pokemon={current}/>
     </div>
   );
 }
