@@ -62,12 +62,29 @@ const App = () => {
         onChange={onSearchChange}
         placeholder="Search by Name"
       />
+  {index == -1 && (
+    <>
+   <List
+   pokemon={filteredPokemon}
+   listItems={listItems}
+   setIndex={setIndex}
+ />
+ {searchField == []  && (
+  <div
+    style={{ width: "100%", display: "flex", justifyContent: "center" }}
+  >
+    <button
+      className="btn-next"
+      onClick={() => setListItems(listItems + 50)}
+    >
+      Show more...
+    </button>
 
-      <List
-        pokemon={filteredPokemon}
-        listItems={listItems}
-        setIndex={setIndex}
-      />
+  </div>
+)}
+</>
+  )}
+   
 
       {index > 0 && (
         <PopUp
@@ -77,19 +94,7 @@ const App = () => {
           setPokemon={setPokemon}
         />
       )}
-      {searchField == []  && (
-        <div
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
-        >
-          <button
-            className="btn-next"
-            onClick={() => setListItems(listItems + 50)}
-          >
-            Show more...
-          </button>
     
-        </div>
-      )}
     </div>
   );
 };

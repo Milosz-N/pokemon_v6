@@ -1,22 +1,33 @@
-import Card from "./Card";
 import React, {useState, useEffect} from "react";
-function Poptest( {pokemon}) {
+import "../components/scss/evolution.scss";
+import "../components/scss/main.scss"
+function Poptest( {pokemon, setIndex, index, list}) {
     const [evolution, setEvolution] = useState([]);
     const [current, setCurrent] = useState();
     const [Id, setId] = useState(0);
-   
+  //  useEffect(()=>{console.log(index)},[index])
+  // console.log(current.values.evolves_to.length);
+  // console.log(current.values.evolves_to.species.name);
+  // console.log(Id)
+  // console.log(current.values.species.name)
+// console.log(index)
+console.log(current)
+
+  // console.log(current.values.evolves_to)
     useEffect(() => {
         // console.log(pokemon.evolution);
         const x = (evolution.find(element =>{
         return element.url == pokemon.evolution
         }))
         
-        if(x !== undefined  ){
+        if(x !== undefined ){ 
+          console.log('nie robie')  
             setCurrent(evolution.find(value =>{return((value.url) == pokemon.evolution)}))
 
         }
         else{
             if (pokemon.evolution !== "" ) {
+              console.log("robie")
                 // if(evolution.find(element => element.id == current.id) != undefined)
               fetch(`${pokemon.evolution}`)
                 .then((res) => res.json())
@@ -38,11 +49,56 @@ function Poptest( {pokemon}) {
         // console.log(current)
       
       }, [pokemon]);
-      
+      // `url(${Background})`
     return (
-    <div className="container">
+    <div className="container-evolution">
         {current != undefined && (
-            <h2>{current.values.species.name}</h2>
+            <>
+            <button>
+                  <img
+                className="image-evolution"
+                style={{
+                  // width: (second.length || third.length > 4) > 4 && "80px",
+                }}
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+                  list.find((pokemon) => pokemon.name == current.values.species.name).id
+
+                }.png`}
+              />
+                            <p>{current.values.species.name }</p>
+
+                </button>
+                <
+                
+                >
+                  {current.values.evolves_to !== undefined && (
+                    <>
+                  <h2
+                  
+                  >{`>`}</h2>
+
+                    <div>
+                     {current.values.evolves_to.map((element => {
+                      return(
+                        <button className="button-evolution">
+                           <img
+                className="image-evolution"
+                style={{
+                  // width: (second.length || third.length > 4) > 4 && "80px",
+                }}
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+                  list.find((pokemon) => pokemon.name == element.species.name).id
+                }.png`}
+              />
+              <p>{element.species.name}</p>
+                        </button>
+                      )
+                     }))}
+                </div>
+                </>
+                  )}
+                  </>
+                </>
         )}
    
      

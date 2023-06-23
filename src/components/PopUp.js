@@ -204,7 +204,7 @@ setPokemon(newState)
       <section className="bar-container">
         <h2 style={{ width: "100%" }}>Stats</h2>
 
-        {current.stats.map((element) => {
+        {current.stats.map((element, index) => {
           return (
             <div style={{ width: "30%" }}
             key={element.stat.name}
@@ -222,8 +222,10 @@ setPokemon(newState)
           );
         })}
       </section>
-      <Evolution current={current} pokemon={pokemon} setIndex={setIndex} setPokemon={setPokemon} index={index} />
-        <Poptest pokemon={current}/>
+      {/* <Evolution current={current} pokemon={pokemon} setIndex={setIndex} setPokemon={setPokemon} index={index} /> */}
+      {Number.parseInt(index) > 0 &&       (<Poptest pokemon={current} setIndex={setIndex} index={index} list={pokemon}/>)
+}
+
     </div>
   );
 }
