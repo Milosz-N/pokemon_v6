@@ -82,7 +82,7 @@ function Evolution({ current, pokemon, setIndex, setPokemon, index }) {
                   width: (second.length || third.length > 4) > 4 && "80px",
                 }}
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-                  pokemon.find((element) => element.name == first).id
+                  pokemon.find((element, index) => (element.name == first)).id
                 }.png`}
               />
               <h3>{first}</h3>

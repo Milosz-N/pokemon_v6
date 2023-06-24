@@ -5,7 +5,7 @@ import Evolution from "./Evolution";
 import Poptest from "./Poptest";
 function PopUp({ index, setIndex, pokemon, setPokemon }) {
   const current = pokemon.find((element) => element.id == index);
- 
+//  console.log(current)
 useEffect(()=>{
   if(current.color == '' && current.height ==''){
     // console.log('robie fetch')
