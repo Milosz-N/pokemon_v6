@@ -1,0 +1,27 @@
+$blue: #94c6ea;
+$gray: #dae4ed;
+.container-list{
+    position: relative;
+display: flex;
+flex-wrap: wrap;
+width: 100%;
+justify-content: center;
+min-width: 620px;
+max-width: 1300px;
+margin: 0px auto auto auto;
+gap: 10px;
+padding-top: 10px;
+
+    button{
+        width: 240px;
+height: 240px;
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+background-color: $gray;
+img{
+    width: 75%;
+    height: 75%;
+}
+}
+}

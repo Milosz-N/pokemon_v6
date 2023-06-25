@@ -1,169 +1,216 @@
-import React, { useEffect, useState } from "react";
-function Evolution({ current, pokemon, setIndex, setPokemon, index }) {
-  // console.log(pokemon);
-  const [first, setFirst] = useState("");
-  const [second, setSecond] = useState("");
-  const [third, setThird] = useState("");
-  
+import React, { useState, useEffect } from "react";
+import "../components/scss/evolution.scss";
+import "../components/scss/main.scss";
+function Evolution({ pokemon, setIndex, list }) {
+  const [evolution, setEvolution] = useState([]);
+  const [current, setCurrent] = useState();
+  const [Id, setId] = useState(0);
   useEffect(() => {
-    if (current.evolution !== "") {
-      fetch(`${current.evolution}`)
-        .then((res) => res.json())
-        .catch((ex) => ex)
-        .then((values) => {
-          // console.log(values.chain.evolves_to[0].evolves_to) //tablica z trzecimi
-          //   console.log(values.chain.evolves_to[0].species.name)  //drugi
-          if (values.chain.species != undefined) {
-            // console.log(`pierwsza: ` + values.chain.species.name) //pierwsza wartosc
-            setFirst(values.chain.species.name);
-          }
-          if (values.chain.evolves_to.length > 0) {
-     
-            setSecond(
-              values.chain.evolves_to.map((element) => {
-                return element.species.name;
-              })
-            );
-          
-          }
-          else{
-            setSecond('')
-          }
+    const x = evolution.find((element) => {
+      return element.url == pokemon.evolution;
+    });
 
-          if (values.chain.evolves_to[0].evolves_to.length > 0) {
-          
-            setThird(
-              values.chain.evolves_to[0].evolves_to.map((element) => {
-                return element.species.name;
-              })
-            );
-          }
-          else{
-            setThird('')
-          }
-
-        });
-    
+    if (x !== undefined) {
+      setCurrent(
+        evolution.find((value) => {
+          return value.url == pokemon.evolution;
+        })
+      );
+    } else {
+      if (pokemon.evolution !== "") {
+        // console.log('robie fetch')
+        fetch(`${pokemon.evolution}`)
+          .then((res) => res.json())
+          .catch((ex) => ex)
+          .then((values) => {
+            setId(values.id);
+            if (
+              !evolution.find(
+                (element) =>
+                  Number.parseInt(element.id) == Number.parseInt(values.id)
+              )
+            ) {
+              setEvolution([
+                ...evolution,
+                { id: values.id, values: values.chain, url: pokemon.evolution },
+              ]);
+            }
+          });
       }
-  }, [current]);
+
+      setCurrent(
+        evolution.find((value) => {
+          return Number.parseInt(value.id) == Number.parseInt(Id);
+        })
+      );
+    }
+  }, [pokemon]);
+
+  // `url(${Background})`
   return (
-    <div
-      className="container-evolution"
-      style={{
-        justifyContent: second.length < 1 && "unset",
-      }}
-    
-    >
-      <h2 style={{ width: "100%" }}
-      key='asfsdf'
-      >Evolution</h2>
+    <section className="container-evolution">
+      <h1>Evolution</h1>
 
-      <div className="first-evolution"
-      
-      >
-        <button
-          className="button-evolution"
-          style={{
-            width: (second.length > 4 || third.length > 4) && "120px",
-            height: (second.length > 4 || third.length > 4) && "120px",
-            margin:
-              (second.length > 4 || third.length > 4) && "auto 10px auto 10px",
-          }}
-          onClick={() => {
-            setIndex(pokemon.find((element) => element.name == first).id);
-          }}
-        >
-          {first != "" && (
-            <>
-              {" "}
-              <img
-                className="image-evolution"
-                style={{
-                  width: (second.length || third.length > 4) > 4 && "80px",
-                }}
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-                  pokemon.find((element, index) => (element.name == first)).id
-                }.png`}
-              />
-              <h3>{first}</h3>
-            </>
-          )}
-        </button>
-      </div>
-
-      <>{second.length > 0 && <h4>{`>`}</h4>}</>
-      <div style={{ gap: (second.length > 4 || third.length > 4) && "5px" }}>
-        {second.length > 0 && (
-          <>
-            {second.map((x, index) => {
-              // {pokemon.find((element) => element.name == x).id != undefined && ()}
-              if (pokemon.find((element) => element.name == x) != undefined) {
-                return (
-                  // <h2>{pokemon.find((element) => element.name == x).id}</h2>
-                  <button
-                  key={`evolution-${index}`}
-                    className="button-evolution"
-                    style={{
-                      width: (second.length > 4 || third.length > 4) && "120px",
-                      height:
-                        (second.length > 4 || third.length > 4) && "120px",
-                    }}
-                    onClick={() => {
-                      setIndex(pokemon.find((element) => element.name == x).id);
-                    }}
-                  >
-                    <img
-                      style={{
-                        width:
-                          (second.length || third.length > 4) > 4 && "80px",
-                      }}
-                      className="image-evolution"
-                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-                        pokemon.find((element) => element.name == x).id
-                      }.png`}
-                    />
-                    <h3>{x}</h3>
-                  </button>
-                );
-              }
-            })}
-          </>
-        )}
-      </div>
-      <>{third.length > 0 && <h4>{`>`}</h4>}</>
-      <>
-        {third.length > 0 && (
-          <>
-            {third.map((x) => {
-              return (
-                <button
-                key={`evolution-${x}`}
-                  className="button-evolution"
-                  style={{
-                    width: (second.length > 4 || third.length > 4) && "120px",
-                    height: (second.length > 4 || third.length > 4) && "120px",
-                  }}
-                  onClick={() => {
-                    setIndex(pokemon.find((element) => element.name == x).id);
-                  }}
-                >
-                  <img
-                    style={{
-                      width: (second.length || third.length > 4) > 4 && "80px",
-                    }}
-                    className="image-evolution"
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-                      pokemon.find((element) => element.name == x).id
-                    }.png`}
-                  />
-                  <h3>{x}</h3>
-                </button>
+      {current != undefined && (
+        <>
+          <button
+            onClick={() => {
+              setIndex(
+                list.find(
+                  (pokemon) => pokemon.name == current.values.species.name
+                ) != undefined
+                  ? list.find(
+                      (pokemon) => pokemon.name == current.values.species.name
+                    ).id
+                  : list.find((pokemon) =>
+                      pokemon.name.includes(current.values.species.name)
+                    ).id
               );
-            })}
+            }}
+          >
+            <img
+              className="image-evolution"
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+                list.find(
+                  (pokemon) => pokemon.name == current.values.species.name
+                ) != undefined
+                  ? list.find(
+                      (pokemon) => pokemon.name == current.values.species.name
+                    ).id
+                  : list.find((pokemon) =>
+                      pokemon.name.includes(current.values.species.name)
+                    ).id
+              }.png`}
+            />
+            <h3 className="header-evolution">{current.values.species.name}</h3>
+          </button>
+          <>
+            {current.values.evolves_to.length > 0 && (
+              <>
+                <h2>{`>`}</h2>
+
+                <div>
+                  {current.values.evolves_to.map((element) => {
+                    return (
+                      <button
+                        className="button-evolution"
+                        key={`${
+                          list.find(
+                            (pokemon) => pokemon.name == element.species.name
+                          ) !== undefined
+                            ? list.find(
+                                (pokemon) =>
+                                  pokemon.name == element.species.name
+                              ).id
+                            : list.find((pokemon) =>
+                                pokemon.name.includes(element.species.name)
+                              ).id
+                        }`}
+                        onClick={() => {
+                          setIndex(
+                            list.find(
+                              (pokemon) => pokemon.name == element.species.name
+                            ) !== undefined
+                              ? list.find(
+                                  (pokemon) =>
+                                    pokemon.name == element.species.name
+                                ).id
+                              : list.find((pokemon) =>
+                                  pokemon.name.includes(element.species.name)
+                                ).id
+                          );
+                        }}
+                      >
+                        <img
+                          className="image-evolution"
+                          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+                            list.find(
+                              (pokemon) => pokemon.name == element.species.name
+                            ) !== undefined
+                              ? list.find(
+                                  (pokemon) =>
+                                    pokemon.name == element.species.name
+                                ).id
+                              : list.find((pokemon) =>
+                                  pokemon.name.includes(element.species.name)
+                                ).id
+                          }.png`}
+                        />
+                        <h3 className="header-evolution">
+                          {element.species.name}
+                        </h3>
+                      </button>
+                    );
+                  })}
+                </div>
+                
+                {current.values.evolves_to[0] != undefined &&
+                  current.values.evolves_to[0].evolves_to.length > 0 && (
+                    <>
+                      <h2>{`>`}</h2>
+
+                      <div>
+                        {current.values.evolves_to[0].evolves_to.map(
+                          (element) => {
+                            return (
+                              <>
+                                      <button
+                                className="button-evolution"
+                                onClick={() => {
+                                  setIndex(
+                                    list.find(
+                                      (pokemon) =>
+                                        pokemon.name == element.species.name
+                                    ) !== undefined
+                                      ? list.find(
+                                          (pokemon) =>
+                                            pokemon.name == element.species.name
+                                        ).id
+                                      : list.find((pokemon) =>
+                                          pokemon.name.includes(
+                                            element.species.name
+                                          )
+                                        ).id
+                                  );
+                                }}
+                              >
+                                <img
+                                  className="image-evolution"
+                                  style={{}}
+                                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+                                    list.find(
+                                      (pokemon) =>
+                                        pokemon.name == element.species.name
+                                    ) !== undefined
+                                      ? list.find(
+                                          (pokemon) =>
+                                            pokemon.name == element.species.name
+                                        ).id
+                                      : list.find((pokemon) =>
+                                          pokemon.name.includes(
+                                            element.species.name
+                                          )
+                                        ).id
+                                  }.png`}
+                                />
+                                <h3 className="header-evolution">
+                                  {element.species.name}
+                                </h3>
+                              </button>
+                              </>
+                      
+                            );
+                          }
+                        )}
+                      </div>
+                    </>
+                  )}
+              </>
+            )}
           </>
-        )}
-      </>
-    </div>
+        </>
+      )}
+    </section>
   );
 }
 

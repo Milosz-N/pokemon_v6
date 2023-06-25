@@ -1,0 +1,33 @@
+$blue: #94c6ea;
+
+
+header{
+    width: 100%;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+height: 120px;
+
+.image-small{
+    display: flex;
+    // background-color: $blue;
+    border-radius: 30px;
+    background-position: -10px -10px;
+    height: 80px !important;
+    margin: 0;
+    width: 80px;
+}
+.container-btn-small{
+    width: 120px;
+}
+button{
+    width: 120px;
+    height: 120px;
+     display: flex;
+     flex-wrap: wrap;
+     background-color: $blue;
+     justify-content: center;
+     align-items: center;
+}
+
+}

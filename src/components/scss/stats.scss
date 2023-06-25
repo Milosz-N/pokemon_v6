@@ -1,0 +1,21 @@
+.container-stats{
+    display: flex;
+flex-wrap: wrap;
+width: 100%;
+padding: 10px;
+background-color: #94c6ea;
+justify-content: space-between;
+div{
+    width: 30%;
+display: flex;
+flex-wrap: wrap;
+}
+h1, .stat-name{
+    width: 100%;
+}
+}
+
+.bar {
+    height: 20px;
+    background-color: red;
+  }

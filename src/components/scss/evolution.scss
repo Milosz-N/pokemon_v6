@@ -1,24 +1,46 @@
+$gray: #dae4ed;
+
 .container-evolution{
-    width: 95%;
+    width: 100%;
+    flex-wrap: wrap;
     margin: auto;
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: normal;
+    background-color: #94c6ea;
+    padding: 10px;
+    button{
+        background-color: $gray;
+
+    }
     h2, button{
         margin: auto 0px auto 0px;
+    }
+    h1{
+
+        margin: 0;
+        width: 100%;
     }
     h2{
         font-size: 50px;
     }
     div{
         display: flex;
-        max-width: 320px;
+        max-width: 250px;
         flex-wrap: wrap;
+        gap:10px
        
     }
+    // div
 
 }
 .image-evolution{
-    width: 150px;
+    width: 120px;
 }
-
+.header-evolution{
+    text-align: center;
+    width: 100%;
+}
+.header{
+    margin-left: 10px;
+}

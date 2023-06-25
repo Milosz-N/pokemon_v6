@@ -1,0 +1,34 @@
+$gray: #dae4ed;
+
+span{
+    font-weight: 500;
+position: absolute;
+top: -2px;
+right: 4px;
+cursor: pointer;
+font-size: 30px;
+}
+
+.container-popup{
+    width: 700px;
+position: absolute;
+top: 5px;
+left: 0;
+z-index: 999;
+right: 0;
+background-color: $gray;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+gap: 10px;
+padding: 25px;
+margin: auto;
+
+}
+.container-popup,section, .bar{
+    border-radius: 20px;
+    }
+
+
+
+

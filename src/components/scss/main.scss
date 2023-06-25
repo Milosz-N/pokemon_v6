@@ -5,54 +5,37 @@ button{
     all:unset;
     cursor: pointer;
 }
-legend{
-    text-align: left;
-    width: 30%;
-    white-space: nowrap;
-    p{
-        text-align: right;
-    }
-}
-p{
-    // margin: 5px;
-    text-align: center;
-    margin-bottom: 0;
-    white-space: nowrap;
+button, img{
+    border-radius: 30px;
 
 }
+
 
 h1, h2, h3, span, button, legend{
     margin: 0;
     font-family: 'Open Sans', sans-serif;
     
 }
-h2{
-    text-align: left;
+h1{
+    font-size: 25px;
+}
+h2, h3{
     font-size: 16px;
-    white-space: nowrap;
     width: max-content
+}
+h2{
+    white-space: nowrap;
     
-
 }
 h3{
+    
     font-weight: 300;
-    width: 100%;
-    text-align: center;
 }
-h1{
-    text-align: center !important;
-}
+
 h4{
     margin: auto 0 auto 0;
     font-size: 50px;
     color: $gray;
-}
-span{
-    font-weight: 500;
-    position: absolute;
-top: -2px;
-right: 5px;
-cursor: pointer;
 }
 
 input {
@@ -65,28 +48,8 @@ input {
     font-size: 20px;
   }
   
-  .container{
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-width: 100%;
-justify-content: center;
-min-width: 620px;
-max-width: 1300px;
-margin: 10px auto auto auto;
-gap: 10px
-  }
 
-  .list-btn{
-    width: 220px;
-    height: 220px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    img{
-        width: 75%;
-    }
-  }
+ 
 
   .btn-next{
     background: $blue;
@@ -97,107 +60,6 @@ margin-top: 15px;
 text-align: center;
 margin-bottom: 25px;
   }
-  .bar{
-    height: 20px;
-    background-color: red;
-  }
-
-  header{
-    width: 90%;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-div:nth-child(1), div:nth-child(3){
-    width: 25%;
-    display: flex;
-    // background-color: $blue;
-    border-radius: 30px;
-}
-
-div:nth-child(2){
-    width: 50%;
-}
-div:nth-child(1)
-{
-justify-content: start;
-width: 150px;
-height: 120px;
-}  
-div:nth-child(3){
-    justify-content: end;
-    width: 150px;
-    height: 120px;
-}
-}
-.evolution{
-    width: 160px;
-    height: 160px;
-}
-
-  .container-popUp{
-    width: 800px;
-    position: absolute;
-    top: 5px;
-    left: 0;
-    z-index: 999;
-    // width: 80%;
-    right: 0;
-margin: 0 auto;
-background-color: $gray;
-display: flex;
-flex-wrap: wrap;
-justify-content:space-around;
-gap: 10px;
-
-padding-bottom: 20px;
-margin:auto;
-.description{
-    
-    width: 400px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    h2{
-        width: 45%;
-        text-align: right;
-    }
-}
-.description-img{
-width: 200px;
-height: 200px;
-}
-    section{
-        display: flex;
-        flex-wrap: wrap;
-        width: 90%;
-        padding: 10px;
-        background-color: $blue;
-        // gap: 5px;
-        justify-content: space-around;
-    
-          }
-    
-}
 
 
-.image-small{
-    background-position: -10px -10px;    height: 80px !important; /* Visible height */
-    width: 80px !important; /* Visible width */
-    margin: auto;
-}
-.btn-small{
-   width: 100%;
-   height: 100%;
-    display: grid;
-    background-color: $blue;
-}
 
-.abilities{
-    width: unset !important;
-}
-
-.container-abilities{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}

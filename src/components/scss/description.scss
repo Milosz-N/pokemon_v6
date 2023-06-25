@@ -1,0 +1,32 @@
+
+
+.container-description{
+    width: 380px;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+h2{
+    width: 75%;
+text-align: right;
+}
+div{
+    width: 100%;
+display: flex;
+justify-content: space-between;
+}
+
+}
+
+
+.img-description{
+    width: 240px;
+}
+.img-btn{
+    width: 90px;
+    height: 90px;
+}
+
+.description-img{
+    width: 200px;
+    height: 200px;
+}

@@ -1,13 +1,13 @@
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect } from "react";
 import List from "./components/List";
-import PopUp from "./components/PopUp.js";
+import Popup from "./components/Popup.js";
 import "../src/components/scss/main.scss";
 
 const App = () => {
-  // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1005.png
   const [searchField, setSearchField] = useState("");
   const [filteredPokemon, setFilteredPokemon] = useState([]);
   const [index, setIndex] = useState(-1); // -1 - nie ma popup
+  const [listItems, setListItems] = useState(50);
 
   const [pokemon, setPokemon] = useState(
     new Array(1010).fill({
@@ -22,11 +22,8 @@ const App = () => {
       types: [],
       stats: [],
       damage: [],
-     
     })
   );
-  
-  const [listItems, setListItems] = useState(50);
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1010`)
       .then((response) => response.json())
@@ -62,39 +59,38 @@ const App = () => {
         onChange={onSearchChange}
         placeholder="Search by Name"
       />
-  {index == -1 && (
-    <>
-   <List
-   pokemon={filteredPokemon}
-   listItems={listItems}
-   setIndex={setIndex}
- />
- {searchField == []  && (
-  <div
-    style={{ width: "100%", display: "flex", justifyContent: "center" }}
-  >
-    <button
-      className="btn-next"
-      onClick={() => setListItems(listItems + 50)}
-    >
-      Show more...
-    </button>
-
-  </div>
-)}
-</>
-  )}
-   
-
-      {index > 0 && (
-        <PopUp
+      {index == -1 ? (
+        <>
+          <List
+            pokemon={filteredPokemon}
+            listItems={listItems}
+            setIndex={setIndex}
+          />
+          {searchField == [] && (
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <button
+                className="btn-next"
+                onClick={() => setListItems(listItems + 50)}
+              >
+                Show more...
+              </button>
+            </div>
+          )}
+        </>
+      ) : (
+        <Popup
           index={index}
           setIndex={setIndex}
           pokemon={pokemon}
           setPokemon={setPokemon}
         />
       )}
-    
     </div>
   );
 };
