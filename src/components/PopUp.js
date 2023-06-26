@@ -22,7 +22,7 @@ function Popup({ index, setIndex, pokemon, setPokemon }) {
           genetation = values.generation.name.replace("generation-", "").toUpperCase() 
 
         });
-      fetch(`https://pokeapi.co/api/v2/pokemon/${index}/`)
+      fetch(`https://pokeapi.co/api/v2/pokemon/${current.id}/`)
         .then((res) => res.json())
         .catch((ex) => ex)
         .then((values) => {
@@ -112,7 +112,7 @@ function Popup({ index, setIndex, pokemon, setPokemon }) {
       <Description current={current} />
       <Stats current={current} />
       <Evolution
-        pokemon={current}
+        pokemon={pokemon[current.id-1]}
         setIndex={setIndex}
         index={index}
         list={pokemon}

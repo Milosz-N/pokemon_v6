@@ -5,23 +5,21 @@ function Evolution({ pokemon, setIndex, index,list }) {
   const [evolution, setEvolution] = useState([]);
   const [current, setCurrent] = useState();
   const [Id, setId] = useState(0);
-  // console.log(current.values.evolves_to.length)
+ 
   useEffect(() => {
     // console.log(index);
     // console.log(pokemon);
     const x = evolution.find((element) => {
-      return element.url == pokemon.evolution;
+      return element.url === pokemon.evolution;
     });
-
     if (x !== undefined) {
       setCurrent(
         evolution.find((value) => {
-          return value.url == pokemon.evolution;
+          return value.url === pokemon.evolution;
         })
       );
     } else {
       if (pokemon.evolution !== "") {
-        // console.log('robie fetch')
         fetch(`${pokemon.evolution}`)
           .then((res) => res.json())
           .catch((ex) => ex)
