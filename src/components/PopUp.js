@@ -8,20 +8,18 @@ import Evolution from "./Evolution";
 function Popup({ index, setIndex, pokemon, setPokemon }) {
   const current = pokemon.find((element) => element.id == index);
   useEffect(() => {
-    if (current.color == "" && current.height == "") {
+    if (current.id !== "" ) {
       var color = "";
       var evolution = "";
-      var text = ""
-      fetch(`https://pokeapi.co/api/v2/pokemon-species/${index}`)
+      fetch(`https://pokeapi.co/api/v2/pokemon-species/${current.id}`)
         .then((res) => res.json())
         .catch((ex) => ex)
         .then((values) => {
           color = values.color.name;
           evolution = values.evolution_chain.url;
-          text = values.flavor_text_entries[0].flavor_text
 
         });
-      fetch(`https://pokeapi.co/api/v2/pokemon/${index}/`)
+      fetch(`https://pokeapi.co/api/v2/pokemon/${current.id}/`)
         .then((res) => res.json())
         .catch((ex) => ex)
         .then((values) => {
@@ -31,7 +29,6 @@ function Popup({ index, setIndex, pokemon, setPokemon }) {
                 ...obj,
                 color: color,
                 evolution: evolution,
-                text: text,
                 height: values.height,
                 weight: values.weight,
                 abilities: values.abilities,
@@ -110,7 +107,7 @@ function Popup({ index, setIndex, pokemon, setPokemon }) {
       <Description current={current} />
       <Stats current={current} />
       <Evolution
-        pokemon={current}
+        pokemon={pokemon[current.id-1]}
         setIndex={setIndex}
         index={index}
         list={pokemon}
