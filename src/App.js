@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import List from "./components/List";
-import Popup from "./components/Popup.js";
+// import Popup from "./components/Popup.js";
 import "../src/components/scss/main.scss";
-// import Popup from "./components/PopUp";
+import Popup from "./components/PopUp";
 
 const App = () => {
   const [searchField, setSearchField] = useState("");
