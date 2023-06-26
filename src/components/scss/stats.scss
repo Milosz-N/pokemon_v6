@@ -1,9 +1,11 @@
+$gray: #dae4ed;
+$blue: #94c6ea;
 .container-stats{
     display: flex;
 flex-wrap: wrap;
 width: 100%;
 padding: 10px;
-background-color: #94c6ea;
+background-color: $gray;
 justify-content: space-between;
 div{
     width: 30%;
@@ -17,5 +19,5 @@ h1, .stat-name{
 
 .bar {
     height: 20px;
-    background-color: red;
+    background-color: $blue;
   }

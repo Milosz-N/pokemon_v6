@@ -5,6 +5,7 @@ function Evolution({ pokemon, setIndex, list }) {
   const [evolution, setEvolution] = useState([]);
   const [current, setCurrent] = useState();
   const [Id, setId] = useState(0);
+  // console.log(current.values.evolves_to.length)
   useEffect(() => {
     const x = evolution.find((element) => {
       return element.url == pokemon.evolution;
@@ -89,9 +90,16 @@ function Evolution({ pokemon, setIndex, list }) {
               <>
                 <h2>{`>`}</h2>
 
-                <div>
+                <div
+  style={{
+    maxWidth: `${current.values.evolves_to[0].evolves_to.length == 0 ? `520px` : current.values.evolves_to[0].evolves_to.length == 1 ? `250px` : `120px`}`,
+  }}          
+        >
                   {current.values.evolves_to.map((element) => {
                     return (
+
+                      
+                    <>
                       <button
                         className="button-evolution"
                         key={`${
@@ -140,6 +148,9 @@ function Evolution({ pokemon, setIndex, list }) {
                           {element.species.name}
                         </h3>
                       </button>
+         
+                
+                    </>
                     );
                   })}
                 </div>
@@ -197,6 +208,7 @@ function Evolution({ pokemon, setIndex, list }) {
                                   {element.species.name}
                                 </h3>
                               </button>
+                             
                               </>
                       
                             );

@@ -11,12 +11,15 @@ function Popup({ index, setIndex, pokemon, setPokemon }) {
     if (current.color == "" && current.height == "") {
       var color = "";
       var evolution = "";
+      var text = ""
       fetch(`https://pokeapi.co/api/v2/pokemon-species/${index}`)
         .then((res) => res.json())
         .catch((ex) => ex)
         .then((values) => {
           color = values.color.name;
           evolution = values.evolution_chain.url;
+          text = values.flavor_text_entries[0].flavor_text
+
         });
       fetch(`https://pokeapi.co/api/v2/pokemon/${index}/`)
         .then((res) => res.json())
@@ -28,6 +31,7 @@ function Popup({ index, setIndex, pokemon, setPokemon }) {
                 ...obj,
                 color: color,
                 evolution: evolution,
+                text: text,
                 height: values.height,
                 weight: values.weight,
                 abilities: values.abilities,

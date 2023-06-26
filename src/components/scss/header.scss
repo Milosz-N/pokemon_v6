@@ -1,4 +1,4 @@
-$blue: #94c6ea;
+$gray: #dae4ed;
 
 
 header{
@@ -25,9 +25,12 @@ button{
     height: 120px;
      display: flex;
      flex-wrap: wrap;
-     background-color: $blue;
+     background-color: $gray;
      justify-content: center;
      align-items: center;
+     h3{
+        text-align: center;
+     }
 }
 
 }

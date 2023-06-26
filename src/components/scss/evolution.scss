@@ -1,4 +1,5 @@
 $gray: #dae4ed;
+$blue : #94c6ea;
 
 .container-evolution{
     width: 100%;
@@ -7,10 +8,11 @@ $gray: #dae4ed;
     display: flex;
     align-items: flex-start;
     justify-content: normal;
-    background-color: #94c6ea;
+    background-color: $gray;
     padding: 10px;
     button{
-        background-color: $gray;
+        // background-color: $blue;
+        border: 2px solid $blue;
 
     }
     h2, button{
@@ -18,7 +20,7 @@ $gray: #dae4ed;
     }
     h1{
 
-        margin: 0;
+
         width: 100%;
     }
     h2{
