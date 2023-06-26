@@ -9,7 +9,7 @@ function Popup({ index, setIndex, pokemon, setPokemon }) {
   const current = pokemon.find((element) => element.id == index);
   
   useEffect(() => {
-    if (current.color == "" || current.evolution == "" || current.generation == "") {
+    if (current.color == ""  || current.evolution == "" || current.generation == "") {
       var color = "";
       var evolution = "";
       var genetation= '';
