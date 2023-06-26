@@ -16,16 +16,7 @@ function Popup({
   const current = pokemon.find((element) => element.id == index);
 
   useEffect(() => {
-    var state = {
-      color: "",
-      evolution: "",
-      genetation: "",
-      height: "",
-      weight: "",
-      abilities: "",
-      types: "",
-      stats: "",
-    };
+   
     // console.log(state)
     if (
       current.color == "" ||
@@ -41,7 +32,6 @@ function Popup({
         .then((values) => {
           // console.log(values);
           color = values.color.name;
-          state["color"] = values.color.name;
           evolution = values.evolution_chain.url;
           // state.evolution = values.evolution_chain_url
           genetation = values.generation.name
@@ -53,10 +43,8 @@ function Popup({
         .then((res) => res.json())
         .catch((ex) => ex)
         .then((values) => {
-          // console.log(values)
-          // console.log(state)
+      
           const newState = pokemon.map((obj) => {
-            // console.log(obj)
             if (obj.id == index) {
               return {
                 ...obj,
@@ -78,62 +66,7 @@ function Popup({
     }
     // console.log(state)
   }, [current]);
-  useEffect(() => {
-    if (current.color != "") {
-      fetch(`https://pokeapi.co/api/v2/pokemon-species/${index}`)
-        .then((res) => res.json())
-        .catch((ex) => ex)
-        .then((values) => {
-          const newState = pokemon.map((obj) => {
-            // console.log(obj)
-            if (obj.id == index) {
-              return {
-                ...obj,
-                color: values.color.name,
-                evolution: values.evolution_chain.url,
-                genetation: values.generation.name
-                  .replace("generation-", "")
-                  .toUpperCase(),
-              };
-            }
-
-            return obj;
-          });
-          setPokemon(newState);
-        });
-    }
-  }, [current]);
-
-  // useEffect(() => {
-  //   // console.log(current)
-  //   if (current.types !== [] && current.damage.length == 0) {
-   
-  //     current.types.map((element) => {
-      
-  //       fetch(`${element.type.url}`)
-  //         .then((res) => res.json())
-  //         .catch((ex) => ex)
-  //         .then((values) => {
-  //           const newState = pokemon.map((obj, index) => {
-  //             if (obj.id == index) {
-  //               return {
-  //                 ...obj,
-  //                 damage: values.damage_relations.double_damage_from.map(
-  //                   (element) => {
-  //                     return element.name;
-  //                   }
-  //                 ),
-  //               };
-  //             }
-  //             return obj;
-  //           });
-  //           setPokemon(newState);
-  //         });
-  //     });
-    
-  //   }
-  //   // console.log(current)
-  // }, [current]);
+  
   useEffect(() => {
     if (current.evolution !== ``) {
       fetch(`${current.evolution}`)
@@ -152,6 +85,7 @@ function Popup({
           });
           setPokemon(newState);
         });
+       
     }
   }, [current.evolution]);
   return (
@@ -169,7 +103,11 @@ function Popup({
         setIndex={setIndex}
         current={current}
       />
-      <Description current={current} />
+      <Description current={current} 
+      pokemon={pokemon}
+      setPokemon={setPokemon}
+      index={index}
+      />
       <Stats current={current} />
       <Evolution
         pokemon={pokemon[current.id - 1]}

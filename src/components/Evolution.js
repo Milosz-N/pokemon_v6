@@ -12,6 +12,7 @@ function Evolution({
   const [current, setCurrent] = useState();
   const [Id, setId] = useState(0);
   //  useEffect(()=>{console.log(evolution)},[evolution])
+
   useEffect(() => {
     // console.log(index);
     // console.log(pokemon);
@@ -113,6 +114,7 @@ function Evolution({
                     return (
                       <>
                         <button
+                        
                           className="button-evolution"
                           key={`${
                             list.find(
@@ -172,7 +174,9 @@ function Evolution({
                     <>
                       <h2>{`>`}</h2>
 
-                      <div>
+                      <div
+                      
+                      >
                         {current.values.evolves_to[0].evolves_to.map(
                           (element) => {
                             return (

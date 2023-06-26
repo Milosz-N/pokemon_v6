@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import List from "./components/List";
-// import Popup from "./components/Popup.js";
+import Popup from "./components/Popup.js";
 import "../src/components/scss/main.scss";
-import Popup from "./components/PopUp";
+// import Popup from "./components/PopUp";
 
 const App = () => {
   const [searchField, setSearchField] = useState("");
   const [filteredPokemon, setFilteredPokemon] = useState([]);
   const [index, setIndex] = useState(-1); // -1 - nie ma popup
-  const [listItems, setListItems] = useState(30);
+  const [listItems, setListItems] = useState(50);
   const [evolution, setEvolution] = useState([]);
 
   const [pokemon, setPokemon] = useState(
@@ -23,7 +23,6 @@ const App = () => {
       abilities: [],
       types: [],
       stats: [],
-      damage: [],
       generation: "",
       evolution_id: "",
     })
@@ -80,7 +79,7 @@ const App = () => {
             >
               <button
                 className="btn-next"
-                onClick={() => setListItems(listItems + 30)}
+                onClick={() => setListItems(listItems + 50)}
               >
                 Show more...
               </button>

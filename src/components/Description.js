@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "../components/scss/main.scss";
 import "../components/scss/description.scss";
-function Description({ current }) {
+function Description({ current}) {
+
   return (
     <>
       <img
@@ -60,14 +61,7 @@ function Description({ current }) {
             })}
           </h2>
         </div>
-        <div>
-          <h3>Weakness</h3>
-          <h2>
-            {current.damage.map((element) => {
-              return element + " ";
-            })}
-          </h2>
-        </div>
+     
       </div>
     </>
   );
