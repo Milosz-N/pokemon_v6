@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "../components/scss/evolution.scss";
 import "../components/scss/main.scss";
-function Evolution({ pokemon, setIndex, list }) {
+function Evolution({ pokemon, setIndex, index,list }) {
   const [evolution, setEvolution] = useState([]);
   const [current, setCurrent] = useState();
   const [Id, setId] = useState(0);
   // console.log(current.values.evolves_to.length)
   useEffect(() => {
+    // console.log(index);
+    // console.log(pokemon);
     const x = evolution.find((element) => {
       return element.url == pokemon.evolution;
     });
@@ -25,17 +27,19 @@ function Evolution({ pokemon, setIndex, list }) {
           .catch((ex) => ex)
           .then((values) => {
             setId(values.id);
-            if (
-              !evolution.find(
-                (element) =>
-                  Number.parseInt(element.id) == Number.parseInt(values.id)
-              )
-            ) {
+            // if (
+            //   !evolution.find(
+            //     (element) =>
+            //       Number.parseInt(element.id) == Number.parseInt(values.id)
+            //   )
+            // ) 
+            
+            // {
               setEvolution([
                 ...evolution,
                 { id: values.id, values: values.chain, url: pokemon.evolution },
               ]);
-            }
+            // }
           });
       }
 
@@ -45,7 +49,7 @@ function Evolution({ pokemon, setIndex, list }) {
         })
       );
     }
-  }, [pokemon]);
+  }, [index, pokemon, list]);
 
   // `url(${Background})`
   return (

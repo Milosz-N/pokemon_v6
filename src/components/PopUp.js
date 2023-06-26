@@ -7,31 +7,33 @@ import Stats from "./Stats";
 import Evolution from "./Evolution";
 function Popup({ index, setIndex, pokemon, setPokemon }) {
   const current = pokemon.find((element) => element.id == index);
+  
   useEffect(() => {
-    if (current.color == "" && current.height == "") {
+    if (current.color == "" || current.evolution == "" || current.generation == "") {
       var color = "";
       var evolution = "";
-      var text = ""
+      var genetation= '';
       fetch(`https://pokeapi.co/api/v2/pokemon-species/${index}`)
         .then((res) => res.json())
         .catch((ex) => ex)
         .then((values) => {
           color = values.color.name;
           evolution = values.evolution_chain.url;
-          text = values.flavor_text_entries[0].flavor_text
+          genetation = values.generation.name.replace("generation-", "").toUpperCase() 
 
         });
       fetch(`https://pokeapi.co/api/v2/pokemon/${index}/`)
         .then((res) => res.json())
         .catch((ex) => ex)
         .then((values) => {
+          // console.log(values)
           const newState = pokemon.map((obj) => {
             if (obj.id == index) {
               return {
                 ...obj,
                 color: color,
                 evolution: evolution,
-                text: text,
+                genetation: genetation,
                 height: values.height,
                 weight: values.weight,
                 abilities: values.abilities,

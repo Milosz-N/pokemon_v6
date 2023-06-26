@@ -42,6 +42,8 @@ function Description({ current }) {
                 1
               )) + " lbs"}{" "}
         </h2>
+        <h3>Generation</h3>
+        <h2 key = {current.genetation}>{current.genetation}</h2>
 
         <div>
           <h3>Type</h3>
