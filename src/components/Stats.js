@@ -9,9 +9,7 @@ function Stats({ current }) {
 
         {current.stats.map((element) => {
           return (
-            <div
-              key={element.stat.name}
-            >
+            <div key={element.stat.name}>
               <h3 className="stat-name">{element.stat.name}</h3>
               <div
                 className="bar"

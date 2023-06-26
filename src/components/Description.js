@@ -10,10 +10,9 @@ function Description({ current }) {
         style={{ backgroundColor: `${current.color}` }}
       />
       <div className="container-description">
-      <h2
-      
-      style={{width: '100%', whiteSpace: 'unset', textAlign:'center'}}
-      >{current.text}</h2>
+        <h2 style={{ width: "100%", whiteSpace: "unset", textAlign: "center" }}>
+          {current.text}
+        </h2>
 
         <h3>Height</h3>
         <h2
@@ -43,7 +42,7 @@ function Description({ current }) {
               )) + " lbs"}{" "}
         </h2>
         <h3>Generation</h3>
-        <h2 key = {current.genetation}>{current.genetation}</h2>
+        <h2 key={current.genetation}>{current.genetation}</h2>
 
         <div>
           <h3>Type</h3>

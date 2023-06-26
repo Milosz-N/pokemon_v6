@@ -9,6 +9,7 @@ const App = () => {
   const [filteredPokemon, setFilteredPokemon] = useState([]);
   const [index, setIndex] = useState(-1); // -1 - nie ma popup
   const [listItems, setListItems] = useState(30);
+  const [evolution, setEvolution] = useState([]);
 
   const [pokemon, setPokemon] = useState(
     new Array(1010).fill({
@@ -23,7 +24,8 @@ const App = () => {
       types: [],
       stats: [],
       damage: [],
-      generation: ''
+      generation: "",
+      evolution_id: "",
     })
   );
   useEffect(() => {
@@ -91,6 +93,8 @@ const App = () => {
           setIndex={setIndex}
           pokemon={pokemon}
           setPokemon={setPokemon}
+          evolution={evolution}
+          setEvolution={setEvolution}
         />
       )}
     </div>
