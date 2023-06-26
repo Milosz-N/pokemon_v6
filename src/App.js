@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import List from "./components/List";
-import Popup from "./components/Popup.js";
+// import Popup from "./components/Popup.js";
 import "../src/components/scss/main.scss";
-// import Popup from "./components/PopUp";
+import Popup from "./components/PopUp";
 
 const App = () => {
   const [searchField, setSearchField] = useState("");
   const [filteredPokemon, setFilteredPokemon] = useState([]);
   const [index, setIndex] = useState(-1); // -1 - nie ma popup
-  const [listItems, setListItems] = useState(150);
+  const [listItems, setListItems] = useState(30);
 
   const [pokemon, setPokemon] = useState(
     new Array(1010).fill({
@@ -78,7 +78,7 @@ const App = () => {
             >
               <button
                 className="btn-next"
-                onClick={() => setListItems(listItems + 150)}
+                onClick={() => setListItems(listItems + 30)}
               >
                 Show more...
               </button>
