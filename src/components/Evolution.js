@@ -50,7 +50,9 @@ function Evolution({
   // `url(${Background})`
   return (
     <section className="container-evolution">
-      <h1>Evolution</h1>
+      <h1
+      style={{width: `100%`}}
+      >Evolution</h1>
 
       {current != undefined && (
         <>
