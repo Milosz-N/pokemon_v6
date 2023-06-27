@@ -9,16 +9,25 @@ function Stats({ current }) {
 
         {current.stats.map((element) => {
           return (
-            <div key={element.stat.name}>
-              <h3 className="stat-name">{element.stat.name}</h3>
-              <div
-                className="bar"
+            <div
+            className="stat"
+            >
+                          <h3>{element.stat.name}</h3>
+           <div>
+
+           <div
                 style={{
                   width: (Number.parseInt(element.base_stat) / 255) * 100 + "%",
                 }}
-              ></div>
+              >
+
+              </div>
               <h3>{element.base_stat}</h3>
+
+           </div>
+          
             </div>
+         
           );
         })}
       </section>

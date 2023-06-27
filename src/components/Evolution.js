@@ -54,11 +54,12 @@ function Evolution({
 
       {current != undefined && (
         <>
-   <ButtonEvolution
-                               list={list}
-                               element={current.values}
-                               setIndex={setIndex}/>
-        
+          <ButtonEvolution
+            list={list}
+            element={current.values}
+            setIndex={setIndex}
+          />
+
           <>
             {current.values.evolves_to.length > 0 && (
               <>
@@ -79,9 +80,10 @@ function Evolution({
                     return (
                       <>
                         <ButtonEvolution
-                               list={list}
-                               element={element}
-                               setIndex={setIndex}/>
+                          list={list}
+                          element={element}
+                          setIndex={setIndex}
+                        />
                       </>
                     );
                   })}
@@ -97,10 +99,11 @@ function Evolution({
                           (element) => {
                             return (
                               <>
-                               <ButtonEvolution
-                               list={list}
-                               element={element}
-                               setIndex={setIndex}/>
+                                <ButtonEvolution
+                                  list={list}
+                                  element={element}
+                                  setIndex={setIndex}
+                                />
                               </>
                             );
                           }

@@ -23,8 +23,9 @@ $blue : #94c6ea;
 
         width: 100%;
     }
-    h2{
-        font-size: 50px;
+    h3{
+        text-align: center;
+        width: 100%;
     }
     div{
         display: flex;
@@ -33,16 +34,9 @@ $blue : #94c6ea;
         gap:5px
        
     }
-    // div
+    img{
+        width: 110px;
+    }
+    
 
-}
-.image-evolution{
-    width: 110px;
-}
-.header-evolution{
-    text-align: center;
-    width: 100%;
-}
-.header{
-    margin-left: 10px;
 }

@@ -7,17 +7,21 @@ width: 100%;
 padding: 10px;
 background-color: $gray;
 justify-content: space-between;
-div{
+
+.stat{
     width: 30%;
-display: flex;
-flex-wrap: wrap;
+display: block;
+// flex-wrap: wrap;
+div{
+    height: 20px;
+    display: flex;
+    div{
+        background-color: $blue;
+    }
 }
-h1, .stat-name{
+}
+h1{
     width: 100%;
 }
 }
 
-.bar {
-    height: 20px;
-    background-color: $blue;
-  }

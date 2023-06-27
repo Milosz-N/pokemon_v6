@@ -10,9 +10,7 @@ function Description({ current }) {
         style={{ backgroundColor: `${current.color}` }}
       />
       <div className="container-description">
-        <h2 style={{ width: "100%", whiteSpace: "unset", textAlign: "center" }}>
-          {current.text}
-        </h2>
+      
 
         <h3>Height</h3>
         <h2

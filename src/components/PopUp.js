@@ -87,18 +87,21 @@ function Popup({
   }, [current.evolution]);
   return (
     <div className="container-popup                                                                                           ">
-      <span
+      <button
+      className="close"
         onClick={() => {
           setIndex(-1);
         }}
       >
         X
-      </span>
+      </button>
       <Header
         next={pokemon[current.id]}
         prev={pokemon[current.id - 2]}
         setIndex={setIndex}
         current={current}
+        min={pokemon[0]}
+        max={pokemon[pokemon.length - 1]}
       />
       <Description
         current={current}

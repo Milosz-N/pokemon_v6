@@ -1,6 +1,6 @@
 $blue: #94c6ea;
 
-span{
+.close{
     font-weight: 500;
 position: absolute;
 top: -2px;
@@ -10,9 +10,10 @@ font-size: 30px;
 }
 
 .container-popup{
+    //   scrollbar-color: red orange;
+ 
     width: 700px;
 position: fixed;
-top: 5px;
 left: 0;
 z-index: 999;
 right: 0;
@@ -23,7 +24,11 @@ justify-content: space-between;
 gap: 10px;
 padding: 25px;
 margin: auto;
-
+top: 5px;
+bottom: 5px;
+position: fixed;
+overflow-y: scroll;
+overflow-x: hidden;
 }
 .container-popup,section, .bar{
     border-radius: 20px;

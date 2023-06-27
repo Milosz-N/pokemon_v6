@@ -4,7 +4,6 @@ function ButtonEvolution({ list, element, setIndex }) {
   return (
     <>
       <button
-        className="button-evolution"
         onClick={() => {
           setIndex(
             list.find((pokemon) => pokemon.name == element.species.name) !==
@@ -17,8 +16,6 @@ function ButtonEvolution({ list, element, setIndex }) {
         }}
       >
         <img
-          className="image-evolution"
-          style={{}}
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
             list.find((pokemon) => pokemon.name == element.species.name) !==
             undefined
