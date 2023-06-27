@@ -8,7 +8,7 @@ const App = () => {
   const [searchField, setSearchField] = useState("");
   const [filteredPokemon, setFilteredPokemon] = useState([]);
   const [index, setIndex] = useState(-1); // -1 - nie ma popup
-  const [listItems, setListItems] = useState(250);
+  const [listItems, setListItems] = useState(30);
   const [evolution, setEvolution] = useState([]);
 
   const [pokemon, setPokemon] = useState(
@@ -79,7 +79,7 @@ const App = () => {
           >
             <button
               className="btn-next"
-              onClick={() => setListItems(listItems + 250)}
+              onClick={() => setListItems(listItems + 30)}
             >
               Show more...
             </button>
