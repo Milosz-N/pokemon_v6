@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../components/scss/evolution.scss";
 import "../components/scss/main.scss";
+import ButtonEvolution from "./ButtonEvolution";
 function Evolution({
   pokemon,
   setIndex,
@@ -11,11 +12,8 @@ function Evolution({
 }) {
   const [current, setCurrent] = useState();
   const [Id, setId] = useState(0);
-  //  useEffect(()=>{console.log(evolution)},[evolution])
 
   useEffect(() => {
-    // console.log(index);
-    // console.log(pokemon);
     const x = evolution.find((element) => {
       return element.url === pokemon.evolution;
     });
@@ -32,14 +30,7 @@ function Evolution({
           .catch((ex) => ex)
           .then((values) => {
             setId(values.id);
-            // if (
-            //   !evolution.find(
-            //     (element) =>
-            //       Number.parseInt(element.id) == Number.parseInt(values.id)
-            //   )
-            // )
 
-            // {
             setEvolution([
               ...evolution,
               { id: values.id, values: values.chain, url: pokemon.evolution },
@@ -63,37 +54,11 @@ function Evolution({
 
       {current != undefined && (
         <>
-          <button
-            onClick={() => {
-              setIndex(
-                list.find(
-                  (pokemon) => pokemon.name == current.values.species.name
-                ) != undefined
-                  ? list.find(
-                      (pokemon) => pokemon.name == current.values.species.name
-                    ).id
-                  : list.find((pokemon) =>
-                      pokemon.name.includes(current.values.species.name)
-                    ).id
-              );
-            }}
-          >
-            <img
-              className="image-evolution"
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-                list.find(
-                  (pokemon) => pokemon.name == current.values.species.name
-                ) != undefined
-                  ? list.find(
-                      (pokemon) => pokemon.name == current.values.species.name
-                    ).id
-                  : list.find((pokemon) =>
-                      pokemon.name.includes(current.values.species.name)
-                    ).id
-              }.png`}
-            />
-            <h3 className="header-evolution">{current.values.species.name}</h3>
-          </button>
+   <ButtonEvolution
+                               list={list}
+                               element={current.values}
+                               setIndex={setIndex}/>
+        
           <>
             {current.values.evolves_to.length > 0 && (
               <>
@@ -113,57 +78,10 @@ function Evolution({
                   {current.values.evolves_to.map((element) => {
                     return (
                       <>
-                        <button
-                        
-                          className="button-evolution"
-                          key={`${
-                            list.find(
-                              (pokemon) => pokemon.name == element.species.name
-                            ) !== undefined
-                              ? list.find(
-                                  (pokemon) =>
-                                    pokemon.name == element.species.name
-                                ).id
-                              : list.find((pokemon) =>
-                                  pokemon.name.includes(element.species.name)
-                                ).id
-                          }`}
-                          onClick={() => {
-                            setIndex(
-                              list.find(
-                                (pokemon) =>
-                                  pokemon.name == element.species.name
-                              ) !== undefined
-                                ? list.find(
-                                    (pokemon) =>
-                                      pokemon.name == element.species.name
-                                  ).id
-                                : list.find((pokemon) =>
-                                    pokemon.name.includes(element.species.name)
-                                  ).id
-                            );
-                          }}
-                        >
-                          <img
-                            className="image-evolution"
-                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-                              list.find(
-                                (pokemon) =>
-                                  pokemon.name == element.species.name
-                              ) !== undefined
-                                ? list.find(
-                                    (pokemon) =>
-                                      pokemon.name == element.species.name
-                                  ).id
-                                : list.find((pokemon) =>
-                                    pokemon.name.includes(element.species.name)
-                                  ).id
-                            }.png`}
-                          />
-                          <h3 className="header-evolution">
-                            {element.species.name}
-                          </h3>
-                        </button>
+                        <ButtonEvolution
+                               list={list}
+                               element={element}
+                               setIndex={setIndex}/>
                       </>
                     );
                   })}
@@ -174,58 +92,15 @@ function Evolution({
                     <>
                       <h2>{`>`}</h2>
 
-                      <div
-                      
-                      >
+                      <div>
                         {current.values.evolves_to[0].evolves_to.map(
                           (element) => {
                             return (
                               <>
-                                <button
-                                  className="button-evolution"
-                                  onClick={() => {
-                                    setIndex(
-                                      list.find(
-                                        (pokemon) =>
-                                          pokemon.name == element.species.name
-                                      ) !== undefined
-                                        ? list.find(
-                                            (pokemon) =>
-                                              pokemon.name ==
-                                              element.species.name
-                                          ).id
-                                        : list.find((pokemon) =>
-                                            pokemon.name.includes(
-                                              element.species.name
-                                            )
-                                          ).id
-                                    );
-                                  }}
-                                >
-                                  <img
-                                    className="image-evolution"
-                                    style={{}}
-                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-                                      list.find(
-                                        (pokemon) =>
-                                          pokemon.name == element.species.name
-                                      ) !== undefined
-                                        ? list.find(
-                                            (pokemon) =>
-                                              pokemon.name ==
-                                              element.species.name
-                                          ).id
-                                        : list.find((pokemon) =>
-                                            pokemon.name.includes(
-                                              element.species.name
-                                            )
-                                          ).id
-                                    }.png`}
-                                  />
-                                  <h3 className="header-evolution">
-                                    {element.species.name}
-                                  </h3>
-                                </button>
+                               <ButtonEvolution
+                               list={list}
+                               element={element}
+                               setIndex={setIndex}/>
                               </>
                             );
                           }

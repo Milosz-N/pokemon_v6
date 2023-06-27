@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import List from "./components/List";
-import Popup from "./components/Popup.js";
+// import Popup from "./components/Popup.js";
 import "../src/components/scss/main.scss";
-// import Popup from "./components/PopUp";
+import Popup from "./components/PopUp";
 
 const App = () => {
   const [searchField, setSearchField] = useState("");
   const [filteredPokemon, setFilteredPokemon] = useState([]);
   const [index, setIndex] = useState(-1); // -1 - nie ma popup
-  const [listItems, setListItems] = useState(50);
+  const [listItems, setListItems] = useState(250);
   const [evolution, setEvolution] = useState([]);
 
   const [pokemon, setPokemon] = useState(
@@ -62,40 +62,43 @@ const App = () => {
         onChange={onSearchChange}
         placeholder="Search by Name"
       />
-      {index == -1 ? (
-        <>
-          <List
-            pokemon={filteredPokemon}
-            listItems={listItems}
-            setIndex={setIndex}
-          />
-          {searchField == [] && (
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <button
-                className="btn-next"
-                onClick={() => setListItems(listItems + 50)}
-              >
-                Show more...
-              </button>
-            </div>
-          )}
-        </>
-      ) : (
-        <Popup
-          index={index}
+      <>
+        <List
+          pokemon={filteredPokemon}
+          listItems={listItems}
           setIndex={setIndex}
-          pokemon={pokemon}
-          setPokemon={setPokemon}
-          evolution={evolution}
-          setEvolution={setEvolution}
+          index={index}
         />
-      )}
+        {searchField == [] && (
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <button
+              className="btn-next"
+              onClick={() => setListItems(listItems + 250)}
+            >
+              Show more...
+            </button>
+          </div>
+        )}
+      </>
+      <>
+        {index != -1 && (
+          <Popup
+            index={index}
+            setIndex={setIndex}
+            pokemon={pokemon}
+            setPokemon={setPokemon}
+            evolution={evolution}
+            setEvolution={setEvolution}
+          />
+        )}
+      </>
+    
     </div>
   );
 };

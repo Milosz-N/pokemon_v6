@@ -16,7 +16,6 @@ function Popup({
   const current = pokemon.find((element) => element.id == index);
 
   useEffect(() => {
-   
     // console.log(state)
     if (
       current.color == "" ||
@@ -43,7 +42,6 @@ function Popup({
         .then((res) => res.json())
         .catch((ex) => ex)
         .then((values) => {
-      
           const newState = pokemon.map((obj) => {
             if (obj.id == index) {
               return {
@@ -66,7 +64,7 @@ function Popup({
     }
     // console.log(state)
   }, [current]);
-  
+
   useEffect(() => {
     if (current.evolution !== ``) {
       fetch(`${current.evolution}`)
@@ -85,7 +83,6 @@ function Popup({
           });
           setPokemon(newState);
         });
-       
     }
   }, [current.evolution]);
   return (
@@ -103,14 +100,15 @@ function Popup({
         setIndex={setIndex}
         current={current}
       />
-      <Description current={current} 
-      pokemon={pokemon}
-      setPokemon={setPokemon}
-      index={index}
+      <Description
+        current={current}
+        pokemon={pokemon}
+        setPokemon={setPokemon}
+        index={index}
       />
       <Stats current={current} />
       <Evolution
-        pokemon={pokemon[current.id - 1]}
+        pokemon={current}
         setIndex={setIndex}
         index={index}
         list={pokemon}

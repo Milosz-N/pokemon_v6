@@ -1,8 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "../components/scss/main.scss";
 import "../components/scss/description.scss";
-function Description({ current}) {
-
+function Description({ current }) {
   return (
     <>
       <img
@@ -17,7 +16,7 @@ function Description({ current}) {
 
         <h3>Height</h3>
         <h2
-          key={Number.parseFloat(current.height / 10).toFixed(1) + current.name}
+        // key={Number.parseFloat(current.height / 10).toFixed(1) + current.id}
         >
           {" "}
           {(Number.isInteger(current.height / 10)
@@ -32,7 +31,9 @@ function Description({ current}) {
             " ft"}
         </h2>
         <h3>Weight</h3>
-        <h2 key={Number.parseFloat(current.weight / 10).toFixed(1)}>
+        <h2
+        // key={Number.parseFloat(current.weight / 10).toFixed(1)}
+        >
           {(Number.isInteger(current.weight / 10)
             ? Number.parseInt(current.weight / 10)
             : Number.parseFloat(current.weight / 10).toFixed(1)) + " kg "}
@@ -43,7 +44,11 @@ function Description({ current}) {
               )) + " lbs"}{" "}
         </h2>
         <h3>Generation</h3>
-        <h2 key={current.genetation}>{current.genetation}</h2>
+        <h2
+        //  key={current.genetation}
+        >
+          {current.genetation}
+        </h2>
 
         <div>
           <h3>Type</h3>
@@ -61,7 +66,6 @@ function Description({ current}) {
             })}
           </h2>
         </div>
-     
       </div>
     </>
   );

@@ -11,7 +11,7 @@ function Card({ element, setIndex }) {
     >
       <img
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${element.id}.png`}
-        key={`${element.id}`}
+        // key={`${element.id}`}
       />
 
       <h2>{element.name + " #" + element.id}</h2>
