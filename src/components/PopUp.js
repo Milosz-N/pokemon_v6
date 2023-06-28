@@ -1,6 +1,6 @@
 import "../components/scss/main.scss";
 import "../components/scss/popup.scss";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Description from "./Description";
 import Stats from "./Stats";
@@ -13,10 +13,19 @@ function Popup({
   evolution,
   setEvolution,
 }) {
+  const [windowHeight, setWindowHeight] = useState(undefined)
   const current = pokemon.find((element) => element.id == index);
+useEffect(()=>{
+if(Number.parseInt(window.innerHeight) < Number.parseInt(document.querySelector(`.container-popup`).clientHeight) ){
+  setWindowHeight('10px')
+} 
+else{
+  setWindowHeight(undefined)
+}
+},[current])
+
 
   useEffect(() => {
-    // console.log(state)
     if (
       current.color == "" ||
       current.evolution == "" ||
@@ -25,6 +34,7 @@ function Popup({
       var color = "";
       var evolution = "";
       var genetation = "";
+      
       fetch(`https://pokeapi.co/api/v2/pokemon-species/${index}`)
         .then((res) => res.json())
         .catch((ex) => ex)
@@ -86,7 +96,9 @@ function Popup({
     }
   }, [current.evolution]);
   return (
-    <div className="container-popup                                                                                           ">
+    <div 
+    style={{bottom: `${windowHeight}`}}
+    className="container-popup                                                                                         ">
       <button
       className="close"
         onClick={() => {
