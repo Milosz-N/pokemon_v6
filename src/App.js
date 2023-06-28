@@ -19,13 +19,12 @@ const App = () => {
       evolution: "",
       height: "",
       weight: "",
-      category: "",
       abilities: [],
       types: [],
       stats: [],
       generation: "",
-      evolution_id: "",
-      weaknesses: []
+      weaknesses: [],
+      habitat: ''
     })
   );
   useEffect(() => {

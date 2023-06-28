@@ -30,7 +30,7 @@ function Evolution({
           .catch((ex) => ex)
           .then((values) => {
             setId(values.id);
-
+            
             setEvolution([
               ...evolution,
               { id: values.id, values: values.chain, url: pokemon.evolution },
@@ -50,9 +50,7 @@ function Evolution({
   // `url(${Background})`
   return (
     <section className="container-evolution">
-      <h1
-      style={{width: `100%`}}
-      >Evolution</h1>
+      <h1 style={{ width: `100%` }}>Evolution</h1>
 
       {current != undefined && (
         <>

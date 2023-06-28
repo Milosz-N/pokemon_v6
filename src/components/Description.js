@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../components/scss/main.scss";
 import "../components/scss/description.scss";
 function Description({ current, pokemon, setPokemon, index }) {
-
   // useEffect(()=>{console.log(current)},[current])
   return (
     <>
@@ -12,8 +11,10 @@ function Description({ current, pokemon, setPokemon, index }) {
         style={{ backgroundColor: `${current.color}` }}
       />
       <div className="container-description">
-      
+        {current.habitat !== false && <> <h3>Habitat</h3>
 
+<h2>{current.habitat}</h2></>}
+       
         <h3>Height</h3>
         <h2
         // key={Number.parseFloat(current.height / 10).toFixed(1) + current.id}
