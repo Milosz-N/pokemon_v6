@@ -24,7 +24,8 @@ const App = () => {
       types: [],
       stats: [],
       generation: "",
-      evolution_id: ""
+      evolution_id: "",
+      weaknesses: []
     })
   );
   useEffect(() => {

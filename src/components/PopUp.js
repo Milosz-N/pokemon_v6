@@ -15,68 +15,87 @@ function Popup({
 }) {
   const [windowHeight, setWindowHeight] = useState(undefined)
   const current = pokemon.find((element) => element.id == index);
-useEffect(()=>{
-if(Number.parseInt(window.innerHeight) < Number.parseInt(document.querySelector(`.container-popup`).clientHeight) ){
-  setWindowHeight('10px')
-} 
-else{
-  setWindowHeight(undefined)
-}
-},[current])
 
+useEffect(() => {
+  if (current.color == '' ) {
+    fetch(`https://pokeapi.co/api/v2/pokemon-species/${index}`)
+    .then((res) => res.json())
+    .catch((ex) => ex)
+    .then((values) => {
+      const newState = pokemon.map((obj, index) => {
+        if (Number.parseInt(index) == Number.parseInt(current.id - 1)) {
+          return {
+            ...obj,
 
-  useEffect(() => {
-    if (
-      current.color == "" ||
-      current.evolution == "" ||
-      current.generation == ""
-    ) {
-      var color = "";
-      var evolution = "";
-      var genetation = "";
-      
-      fetch(`https://pokeapi.co/api/v2/pokemon-species/${index}`)
-        .then((res) => res.json())
-        .catch((ex) => ex)
-        .then((values) => {
-          // console.log(values);
-          color = values.color.name;
-          evolution = values.evolution_chain.url;
-          // state.evolution = values.evolution_chain_url
-          genetation = values.generation.name
-            .replace("generation-", "")
-            .toUpperCase();
-          // console.log(state)
+            color: values.color.name,
+            evolution: values.evolution_chain.url,
+            generation: values.generation.name.replace("generation-", "").toUpperCase()
+
+          };
+        }
+
+        return obj;
+      });
+      setPokemon(newState);
+    });
+   
+  }
+  if (
+    current.types.length == 0 || current.abilities.length == 0
+   
+  ) {
+  
+    fetch(`https://pokeapi.co/api/v2/pokemon/${current.id}/`)
+      .then((res) => res.json())
+      .catch((ex) => ex)
+      .then((values) => {
+        const newState = pokemon.map((obj) => {
+          if (obj.id == index) {
+            return {
+              ...obj,
+              height: values.height,
+              weight: values.weight,
+              abilities: values.abilities,
+              types: values.types,
+              stats: values.stats,
+            };
+          }
+
+          return obj;
         });
-      fetch(`https://pokeapi.co/api/v2/pokemon/${current.id}/`)
-        .then((res) => res.json())
-        .catch((ex) => ex)
-        .then((values) => {
-          const newState = pokemon.map((obj) => {
-            if (obj.id == index) {
-              return {
-                ...obj,
-                color: color,
-                evolution: evolution,
-                genetation: genetation,
-                height: values.height,
-                weight: values.weight,
-                abilities: values.abilities,
-                types: values.types,
-                stats: values.stats,
-              };
-            }
+        setPokemon(newState);
+      });
+  }
 
-            return obj;
-          });
-          setPokemon(newState);
-        });
-    }
-    // console.log(state)
-  }, [current]);
 
-  useEffect(() => {
-    if (current.evolution !== ``) {
+
+  if (current.weaknesses.length == 0 && current.types.length > 0) {
+  //  console.log(current.types);
+   current.types.map(element => {
+    // console.log(element.type.url)
+    fetch(`${element.type.url}`)
+    .then((res) => res.json())
+    .catch((ex) => ex)
+    .then((values) => {
+      // console.log(values.damage_relations.double_damage_from)
+      const newState = pokemon.map((obj, index) => {
+        if (Number.parseInt(index) == Number.parseInt(current.id - 1)) {
+          return {
+            ...obj,
+            weaknesses: values.damage_relations.double_damage_from.map(element=>{return element.name}),
+          };
+        }
+
+        return obj;
+      });
+      setPokemon(newState);
+    });
+   })
+  }
+
+   
+    if (current.evolution !== "") {
+      // console.log('fetch')
       fetch(`${current.evolution}`)
         .then((res) => res.json())
         .catch((ex) => ex)
@@ -94,7 +113,18 @@ else{
           setPokemon(newState);
         });
     }
-  }, [current.evolution]);
+    if(Number.parseInt(window.innerHeight) < 800 ){
+      setWindowHeight('10px')
+    } 
+    else{
+      setWindowHeight('unset')
+    
+    }
+}, [current, index]);
+
+
+// useEffect(()=>{console.log(current)},[current])
+
   return (
     <div 
     style={{bottom: `${windowHeight}`}}

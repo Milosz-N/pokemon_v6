@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../components/scss/main.scss";
 import "../components/scss/description.scss";
-function Description({ current }) {
+function Description({ current, pokemon, setPokemon, index }) {
+
+  // useEffect(()=>{console.log(current)},[current])
   return (
     <>
       <img
@@ -45,7 +47,7 @@ function Description({ current }) {
         <h2
         //  key={current.genetation}
         >
-          {current.genetation}
+          {current.generation}
         </h2>
 
         <div>
@@ -61,6 +63,14 @@ function Description({ current }) {
           <h2>
             {current.abilities.map((element) => {
               return element.ability.name + " ";
+            })}
+          </h2>
+        </div>
+        <div>
+          <h3>Weaknesses</h3>
+          <h2>
+            {current.weaknesses.map((element) => {
+              return element + " ";
             })}
           </h2>
         </div>
