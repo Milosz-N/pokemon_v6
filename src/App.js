@@ -24,7 +24,9 @@ const App = () => {
       stats: [],
       generation: "",
       weaknesses: [],
-      habitat: ''
+      habitat: "",
+      evolution_array: [],
+      flavor_text: "",
     })
   );
   useEffect(() => {

@@ -15,19 +15,21 @@ function Popup({
 }) {
   const [windowHeight, setWindowHeight] = useState(undefined);
   const current = pokemon.find((element) => element.id == index);
-
   useEffect(() => {
     if (current.color == "") {
       fetch(`https://pokeapi.co/api/v2/pokemon-species/${index}`)
         .then((res) => res.json())
         .catch((ex) => ex)
         .then((values) => {
-          // console.log(values)
           const newState = pokemon.map((obj, index) => {
             if (obj.id == current.id) {
               return {
                 ...obj,
-
+                flavor_text:
+                  values.flavor_text_entries[0] !== undefined &&
+                  values.flavor_text_entries.find((element) => {
+                    return element.language.name == "en";
+                  }),
                 color: values.color.name,
                 evolution: values.evolution_chain.url,
                 habitat: values.habitat !== null && values.habitat.name,
@@ -65,35 +67,7 @@ function Popup({
         });
     }
 
-    if (current.weaknesses.length === 0 && current.types.length !== 0) {
-      //  console.log(current.types);
-      current.types.map((element) => {
-        // console.log(element.type.url)
-        fetch(`${element.type.url}`)
-          .then((res) => res.json())
-          .catch((ex) => ex)
-          .then((values) => {
-            // console.log(values.damage_relations.double_damage_from)
-            const newState = pokemon.map((obj, index) => {
-              if (obj.types == current.types) {
-                return {
-                  ...obj,
-                  weaknesses: values.damage_relations.double_damage_from.map(
-                    (element) => {
-                      return element.name;
-                    }
-                  ),
-                };
-              }
-
-              return obj;
-            });
-            setPokemon(newState);
-          });
-      });
-    }
-
-    if (current.evolution !== "") {
+    if (current.evolution !== "" && current.evolution_array.length < 1) {
       // console.log('fetch')
       fetch(`${current.evolution}`)
         .then((res) => res.json())
@@ -117,10 +91,36 @@ function Popup({
     } else {
       setWindowHeight("unset");
     }
-  }, [current, index]);
+
+    if (current.weaknesses.length < 1 && current.types.length !== 0) {
+      //  console.log(current.types);
+      current.types.map((element) => {
+        // console.log(element.type.url)
+        fetch(`${element.type.url}`)
+          .then((res) => res.json())
+          .catch((ex) => ex)
+          .then((values) => {
+            const newState = pokemon.map((obj, index) => {
+              if (Number.parseInt(index) == Number.parseInt(current.id - 1)) {
+                return {
+                  ...obj,
+                  weaknesses: values.damage_relations.double_damage_from.map(
+                    (element) => {
+                      return element.name;
+                    }
+                  ),
+                };
+              }
+
+              return obj;
+            });
+            setPokemon(newState);
+          });
+      });
+    }
+  }, [current]);
 
   // useEffect(()=>{console.log(current)},[current])
-  useEffect(()=>{},[current.weaknesses])
   return (
     <div
       style={{ bottom: `${windowHeight}` }}
@@ -142,12 +142,7 @@ function Popup({
         min={pokemon[0]}
         max={pokemon[pokemon.length - 1]}
       />
-      <Description
-        current={current}
-        pokemon={pokemon}
-        setPokemon={setPokemon}
-        index={index}
-      />
+      <Description current={current} />
       <Stats current={current} />
       <Evolution
         pokemon={current}

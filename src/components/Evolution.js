@@ -30,7 +30,7 @@ function Evolution({
           .catch((ex) => ex)
           .then((values) => {
             setId(values.id);
-            
+
             setEvolution([
               ...evolution,
               { id: values.id, values: values.chain, url: pokemon.evolution },

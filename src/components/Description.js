@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../components/scss/main.scss";
 import "../components/scss/description.scss";
-function Description({ current, pokemon, setPokemon, index }) {
-  // useEffect(()=>{console.log(current)},[current])
+function Description({ current }) {
   return (
     <>
       <img
@@ -11,14 +10,21 @@ function Description({ current, pokemon, setPokemon, index }) {
         style={{ backgroundColor: `${current.color}` }}
       />
       <div className="container-description">
-        {current.habitat !== false && <> <h3>Habitat</h3>
+        {current.flavor_text != "" && (
+          // <h1>{current.flavor_text[Math.floor(Math.random() * ((current.flavor_text.length-1) - 1) + 1)].flavor_text}</h1>
+          <h1>{current.flavor_text.flavor_text}</h1>
+        )}
 
-<h2>{current.habitat}</h2></>}
-       
+        {current.habitat !== false && (
+          <>
+            {" "}
+            <h3>Habitat</h3>
+            <h2>{current.habitat}</h2>
+          </>
+        )}
+
         <h3>Height</h3>
-        <h2
-        // key={Number.parseFloat(current.height / 10).toFixed(1) + current.id}
-        >
+        <h2>
           {" "}
           {(Number.isInteger(current.height / 10)
             ? Number.parseInt(current.height / 10)
