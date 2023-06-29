@@ -46,12 +46,11 @@ function Evolution({
       );
     }
   }, [index, pokemon, list]);
-
   // `url(${Background})`
   return (
     <section className="container-evolution">
       <h1 style={{ width: `100%` }}>Evolution</h1>
-
+      {/* width: calc(100% - 100px); */}
       {current != undefined && (
         <>
           <ButtonEvolution
@@ -65,17 +64,7 @@ function Evolution({
               <>
                 <h2>{`>`}</h2>
 
-                <div
-                  style={{
-                    maxWidth: `${
-                      current.values.evolves_to[0].evolves_to.length == 0
-                        ? `520px`
-                        : current.values.evolves_to[0].evolves_to.length == 1
-                        ? `250px`
-                        : `120px`
-                    }`,
-                  }}
-                >
+                <div className="second-evolution">
                   {current.values.evolves_to.map((element) => {
                     return (
                       <>

@@ -10,8 +10,8 @@ font-size: 30px;
 }
 
 .container-popup{
- 
-    width: 700px;
+    min-width: 350px;
+    max-width: 760px;
 position: fixed;
 left: 0;
 z-index: 999;
@@ -25,14 +25,20 @@ padding: 25px;
 margin: auto;
 top: 5px;
 // bottom: 20px;
-position: fixed;
 overflow-y: auto;
 overflow-x: hidden;
+width: 90%;
 }
-.container-popup,section, .bar{
-    border-radius: 20px;
+
+  @media (max-width: 400px)  {
+    .container-popup{
+      padding: 10px;
+      
     }
-
-
-
-
+    .close{
+        font-size: 20px;
+right: 0px;
+top: -4px;
+    }
+    }
+  

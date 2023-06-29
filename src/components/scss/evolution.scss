@@ -2,10 +2,7 @@ $gray: #dae4ed;
 $blue : #94c6ea;
 
 .container-evolution{
-    width: 100%;
-    flex-wrap: wrap;
     margin: auto;
-    display: flex;
     align-items: flex-start;
     justify-content: normal;
     background-color: $gray;
@@ -28,10 +25,14 @@ $blue : #94c6ea;
     }
     div{
         display: flex;
-        max-width: 250px;
+        // max-width: 250px;
         flex-wrap: wrap;
         gap:5px
        
+    }
+    .second-evolution{
+        // maxWidth: `${`calc(100% - 110px)` }`,
+        max-width: calc(100% - 140px);
     }
     img{
         width: 100px;
@@ -39,3 +40,23 @@ $blue : #94c6ea;
     
 
 }
+
+    @media (max-width: 500px) {
+        .container-evolution{
+            h2{
+                font-size: 16px;
+            }
+            .header-evolution{
+                font-size: 12px;
+            }
+            img{
+                width: 80px;
+               }
+        
+             
+        
+        }
+    }
+ 
+         
+        

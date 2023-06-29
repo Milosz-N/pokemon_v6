@@ -1,12 +1,9 @@
 $gray: #dae4ed;
 $blue: #94c6ea;
 .container-stats{
-    display: flex;
-flex-wrap: wrap;
-width: 100%;
+ 
 padding: 10px;
 background-color: $gray;
-justify-content: space-between;
 
 .stat{
     width: 30%;
@@ -21,8 +18,19 @@ div{
     }
 }
 }
-h1{
-    width: 100%;
-}
+
 }
 
+@media (max-width: 620px) and (min-width: 451px) {
+  .stat{
+    width: 50% !important;
+  }
+  
+  }
+
+  @media (max-width: 450px)  {
+    .stat{
+      width: 100% !important;
+    }
+    
+    }

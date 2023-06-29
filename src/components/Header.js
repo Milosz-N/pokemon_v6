@@ -14,7 +14,7 @@ function Header({ next, prev, setIndex, current, min, max }) {
             );
           }}
         >
-          <h3>←</h3>
+          <h3 className="arrow">←</h3>
           <div
             style={{
               backgroundImage: `url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
@@ -51,7 +51,7 @@ function Header({ next, prev, setIndex, current, min, max }) {
               }.png")`,
             }}
           ></div>
-          <h3>→</h3>
+          <h3 className="arrow">→</h3>
 
           <h3>
             {next !== undefined

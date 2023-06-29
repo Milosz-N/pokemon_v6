@@ -3,13 +3,13 @@ import "../components/scss/main.scss";
 import "../components/scss/description.scss";
 function Description({ current }) {
   return (
-    <>
+    <section className="container-description">
       <img
         className="img-description"
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${current.id}.png`}
         style={{ backgroundColor: `${current.color}` }}
       />
-      <div className="container-description">
+      <div className="list-description">
         {current.flavor_text != "" && (
           // <h1>{current.flavor_text[Math.floor(Math.random() * ((current.flavor_text.length-1) - 1) + 1)].flavor_text}</h1>
           <h1>{current.flavor_text.flavor_text}</h1>
@@ -18,44 +18,53 @@ function Description({ current }) {
         {current.habitat !== false && (
           <>
             {" "}
-            <h3>Habitat</h3>
-            <h2>{current.habitat}</h2>
+            <div>
+              <h3>Habitat</h3>
+              <h2>{current.habitat}</h2>
+            </div>
           </>
         )}
+        <div>
+          <h3>Weight</h3>
 
-        <h3>Height</h3>
-        <h2>
-          {" "}
-          {(Number.isInteger(current.height / 10)
-            ? Number.parseInt(current.height / 10)
-            : Number.parseFloat(current.height / 10).toFixed(1)) +
-            " m " +
-            (Number.isInteger((current.height * 3.2808399) / 10)
-              ? Number.parseInt((current.height * 3.2808399) / 10)
-              : Number.parseFloat((current.height * 3.2808399) / 10).toFixed(
+          <h2>
+            {" "}
+            {(Number.isInteger(current.height / 10)
+              ? Number.parseInt(current.height / 10)
+              : Number.parseFloat(current.height / 10).toFixed(1)) +
+              " m " +
+              (Number.isInteger((current.height * 3.2808399) / 10)
+                ? Number.parseInt((current.height * 3.2808399) / 10)
+                : Number.parseFloat((current.height * 3.2808399) / 10).toFixed(
+                    1
+                  )) +
+              " ft"}
+          </h2>
+        </div>
+        <div>
+          <h3>Height</h3>
+
+          <h2
+          // key={Number.parseFloat(current.weight / 10).toFixed(1)}
+          >
+            {(Number.isInteger(current.weight / 10)
+              ? Number.parseInt(current.weight / 10)
+              : Number.parseFloat(current.weight / 10).toFixed(1)) + " kg "}
+            {(Number.isInteger((current.weight * 2.20462262) / 10)
+              ? Number.parseFloat((current.weight * 2.20462262) / 10)
+              : Number.parseFloat((current.weight * 2.20462262) / 10).toFixed(
                   1
-                )) +
-            " ft"}
-        </h2>
-        <h3>Weight</h3>
-        <h2
-        // key={Number.parseFloat(current.weight / 10).toFixed(1)}
-        >
-          {(Number.isInteger(current.weight / 10)
-            ? Number.parseInt(current.weight / 10)
-            : Number.parseFloat(current.weight / 10).toFixed(1)) + " kg "}
-          {(Number.isInteger((current.weight * 2.20462262) / 10)
-            ? Number.parseFloat((current.weight * 2.20462262) / 10)
-            : Number.parseFloat((current.weight * 2.20462262) / 10).toFixed(
-                1
-              )) + " lbs"}{" "}
-        </h2>
-        <h3>Generation</h3>
-        <h2
-        //  key={current.genetation}
-        >
-          {current.generation}
-        </h2>
+                )) + " lbs"}{" "}
+          </h2>
+        </div>
+        <div>
+          <h3>Generation</h3>
+          <h2
+          //  key={current.genetation}
+          >
+            {current.generation}
+          </h2>
+        </div>
 
         <div>
           <h3>Type</h3>
@@ -82,7 +91,7 @@ function Description({ current }) {
           </h2>
         </div>
       </div>
-    </>
+    </section>
   );
 }
 
