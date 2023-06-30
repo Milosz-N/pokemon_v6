@@ -3,7 +3,7 @@ $blue : #94c6ea;
 
 .container-evolution{
     margin: auto;
-    align-items: flex-start;
+    align-items: center;
     justify-content: normal;
     background-color: $gray;
     padding: 10px;
@@ -21,42 +21,109 @@ $blue : #94c6ea;
         width: 100%;
     }
     h2{
-        font-size: 50px;
+        font-size: 25px;
+        
     }
+    h2::before {
+        content: "►";
+      }
     div{
         display: flex;
         // max-width: 250px;
         flex-wrap: wrap;
-        gap:5px
+        gap:5px;
        
     }
     .second-evolution{
-        // maxWidth: `${`calc(100% - 110px)` }`,
-        max-width: calc(100% - 140px);
+        max-width: calc(100% - 150px);
     }
     img{
-        width: 100px;
+        width: 120px;
     }
     
 
 }
 
-    @media (max-width: 500px) {
+@media(min-width: 750px) and (max-width: 1200px){
+    .button-evolution img{
+        width: 150px;
+    }
+    .container-evolution .second-evolution {
+        max-width: calc(100% - 180px);
+      }
+}
+
+
+    @media (max-width: 649px) and (min-width: 501px) {
         .container-evolution{
+          
+
+            flex-wrap: wrap;
+            justify-content: center;
+           
             h2{
-                font-size: 16px;
+                width: 100%;
+                text-align: center;
+
             }
-            .header-evolution{
-                font-size: 12px;
-            }
-            img{
-                width: 80px;
-               }
-        
-             
+           h2::before {
+                content: "▼";
+              }
+         
+           div{
+            width: 100%;
+justify-content: center;
+
+           }
+      
+      
         
         }
+        .button-evolution{
+            width: 45%;
+            display: grid;
+            justify-content: center;
+            img{
+                width: 80%;
+                margin: auto;
+            }
+           }
+           .second-evolution{
+            max-width: unset !important;
+           }
     }
- 
-         
+    
+ @media (max-width:500px){
+    .container-evolution{
+        justify-content: center;
+        div{
+            display: flex;
+            justify-content: center;
+        }
+        h2::before {
+            content: "▼";
+          }
+    }
+    h2{
+        text-align: center;
         
+    }
+    // h2::before {
+    //     content: "▼";
+    //   }
+    .container-evolution   .second-evolution{
+        max-width: unset;
+    }
+    .button-evolution{
+        width: 90%;
+        display: grid;
+        justify-content: center;
+        
+        img{
+            width: 80%;
+            margin: auto;
+        }
+       }
+ }
+         
+   

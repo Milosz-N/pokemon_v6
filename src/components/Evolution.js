@@ -48,23 +48,36 @@ function Evolution({
   }, [index, pokemon, list]);
   // `url(${Background})`
   return (
+    <>
+         
+
     <section className="container-evolution">
-      <h1 style={{ width: `100%` }}>Evolution</h1>
+      <div style={{width: '100%'}}>
+      <h1 
+          >Evolution</h1>
+      </div>
       {/* width: calc(100% - 100px); */}
       {current != undefined && (
         <>
-          <ButtonEvolution
+        <div>
+        <ButtonEvolution
             list={list}
             element={current.values}
             setIndex={setIndex}
           />
+ {/* {current.values.evolves_to.length > 0 && (
+<h2></h2>)} */}
+
+        </div>
+       
 
           <>
             {current.values.evolves_to.length > 0 && (
               <>
-                <h2>{`>`}</h2>
-
-                <div className="second-evolution">
+                <h2></h2>
+                <div className="second-evolution"
+                // style={{width: `${document.querySelector('.container-popup').clientWidth > 650 && }`}}
+                >
                   {current.values.evolves_to.map((element) => {
                     return (
                       <>
@@ -73,6 +86,7 @@ function Evolution({
                           element={element}
                           setIndex={setIndex}
                         />
+                        
                       </>
                     );
                   })}
@@ -81,7 +95,7 @@ function Evolution({
                 {current.values.evolves_to[0] != undefined &&
                   current.values.evolves_to[0].evolves_to.length > 0 && (
                     <>
-                      <h2>{`>`}</h2>
+                      <h2></h2>
 
                       <div>
                         {current.values.evolves_to[0].evolves_to.map(
@@ -93,6 +107,7 @@ function Evolution({
                                   element={element}
                                   setIndex={setIndex}
                                 />
+                                
                               </>
                             );
                           }
@@ -106,6 +121,7 @@ function Evolution({
         </>
       )}
     </section>
+                          </>
   );
 }
 
