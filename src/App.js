@@ -48,7 +48,10 @@ const App = () => {
   }, []);
   useEffect(() => {
     const newFilteredPokemon = pokemon.filter((item) => {
-      return item.name.toLocaleLowerCase().includes(searchField);
+      return (
+        item.name.toLocaleLowerCase().includes(searchField) ||
+        item.id.toString().includes(searchField)
+      );
     });
 
     setFilteredPokemon(newFilteredPokemon);
@@ -62,7 +65,7 @@ const App = () => {
       <input
         type="search"
         onChange={onSearchChange}
-        placeholder="Search by Name"
+        placeholder="Search by Name or Id"
       />
       <>
         <List

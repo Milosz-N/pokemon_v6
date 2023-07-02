@@ -46,82 +46,74 @@ function Evolution({
       );
     }
   }, [index, pokemon, list]);
-  // `url(${Background})`
   return (
     <>
-         
-
-    <section className="container-evolution">
-      <div style={{width: '100%'}}>
-      <h1 
-          >Evolution</h1>
-      </div>
-      {/* width: calc(100% - 100px); */}
-      {current != undefined && (
-        <>
+      <section className="container-evolution">
+        <h1>Evolution</h1>
         <div>
-        <ButtonEvolution
-            list={list}
-            element={current.values}
-            setIndex={setIndex}
-          />
- {/* {current.values.evolves_to.length > 0 && (
-<h2></h2>)} */}
+          {current != undefined && (
+            <>
+              <div
+                style={{
+                  width: "max-content",
+                  height: "max-content",
+                }}
+              >
+                <ButtonEvolution
+                  list={list}
+                  element={current.values}
+                  setIndex={setIndex}
+                />
+              </div>
+              {current.values.evolves_to.length > 0 && <h2></h2>}
 
-        </div>
-       
-
-          <>
-            {current.values.evolves_to.length > 0 && (
               <>
-                <h2></h2>
-                <div className="second-evolution"
-                // style={{width: `${document.querySelector('.container-popup').clientWidth > 650 && }`}}
-                >
-                  {current.values.evolves_to.map((element) => {
-                    return (
-                      <>
-                        <ButtonEvolution
-                          list={list}
-                          element={element}
-                          setIndex={setIndex}
-                        />
-                        
-                      </>
-                    );
-                  })}
-                </div>
-
-                {current.values.evolves_to[0] != undefined &&
-                  current.values.evolves_to[0].evolves_to.length > 0 && (
-                    <>
-                      <h2></h2>
-
-                      <div>
-                        {current.values.evolves_to[0].evolves_to.map(
-                          (element) => {
-                            return (
-                              <>
-                                <ButtonEvolution
-                                  list={list}
-                                  element={element}
-                                  setIndex={setIndex}
-                                />
-                                
-                              </>
-                            );
-                          }
-                        )}
-                      </div>
-                    </>
-                  )}
-              </>
-            )}
-          </>
-        </>
-      )}
-    </section>
+                {current.values.evolves_to.length > 0 && (
+                  <>
+                    <div>
+                      {current.values.evolves_to.map((element) => {
+                        return (
+                          <>
+                            <ButtonEvolution
+                              list={list}
+                              element={element}
+                              setIndex={setIndex}
+                            />
                           </>
+                        );
+                      })}
+                    </div>
+
+                    {current.values.evolves_to[0] != undefined &&
+                      current.values.evolves_to[0].evolves_to.length > 0 && (
+                        <>
+                          <h2></h2>
+
+                          <div>
+                            {current.values.evolves_to[0].evolves_to.map(
+                              (element) => {
+                                return (
+                                  <>
+                                    <ButtonEvolution
+                                      list={list}
+                                      element={element}
+                                      setIndex={setIndex}
+                                    />
+                                  </>
+                                );
+                              }
+                            )}
+                          </div>
+                        </>
+                      )}
+                  </>
+                )}
+              </>
+            </>
+          )}
+        </div>
+      </section>
+    </>
   );
 }
 

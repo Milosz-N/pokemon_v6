@@ -1,6 +1,6 @@
 import "../components/scss/main.scss";
 import "../components/scss/popup.scss";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Header from "./Header";
 import Description from "./Description";
 import Stats from "./Stats";
@@ -13,7 +13,6 @@ function Popup({
   evolution,
   setEvolution,
 }) {
-  const [windowHeight, setWindowHeight] = useState(undefined);
   const current = pokemon.find((element) => element.id == index);
   useEffect(() => {
     if (current.color == "") {
@@ -21,7 +20,7 @@ function Popup({
         .then((res) => res.json())
         .catch((ex) => ex)
         .then((values) => {
-          const newState = pokemon.map((obj, index) => {
+          const newState = pokemon.map((obj) => {
             if (obj.id == current.id) {
               return {
                 ...obj,
@@ -86,16 +85,9 @@ function Popup({
           setPokemon(newState);
         });
     }
-    if (Number.parseInt(window.innerHeight) < 800) {
-      setWindowHeight("10px");
-    } else {
-      setWindowHeight("unset");
-    }
 
     if (current.weaknesses.length < 1 && current.types.length !== 0) {
-      //  console.log(current.types);
       current.types.map((element) => {
-        // console.log(element.type.url)
         fetch(`${element.type.url}`)
           .then((res) => res.json())
           .catch((ex) => ex)
@@ -120,10 +112,9 @@ function Popup({
     }
   }, [current]);
 
-  // useEffect(()=>{console.log(current)},[current])
   return (
     <div
-      style={{ bottom: `${windowHeight}` }}
+      style={{ bottom: `auto`, maxHeight: "100%" }}
       className="container-popup                                                                                         "
     >
       <button

@@ -11,7 +11,6 @@ function Description({ current }) {
       />
       <div className="list-description">
         {current.flavor_text != "" && (
-          // <h1>{current.flavor_text[Math.floor(Math.random() * ((current.flavor_text.length-1) - 1) + 1)].flavor_text}</h1>
           <h1>{current.flavor_text.flavor_text}</h1>
         )}
 
@@ -44,9 +43,7 @@ function Description({ current }) {
         <div>
           <h3>Height</h3>
 
-          <h2
-          // key={Number.parseFloat(current.weight / 10).toFixed(1)}
-          >
+          <h2>
             {(Number.isInteger(current.weight / 10)
               ? Number.parseInt(current.weight / 10)
               : Number.parseFloat(current.weight / 10).toFixed(1)) + " kg "}
@@ -59,11 +56,7 @@ function Description({ current }) {
         </div>
         <div>
           <h3>Generation</h3>
-          <h2
-          //  key={current.genetation}
-          >
-            {current.generation}
-          </h2>
+          <h2>{current.generation}</h2>
         </div>
 
         <div>

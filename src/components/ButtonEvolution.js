@@ -4,7 +4,7 @@ function ButtonEvolution({ list, element, setIndex }) {
   return (
     <>
       <button
-      className="button-evolution"
+        className="button-evolution"
         onClick={() => {
           setIndex(
             list.find((pokemon) => pokemon.name == element.species.name) !==
