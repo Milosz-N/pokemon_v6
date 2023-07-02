@@ -114,7 +114,6 @@ function Popup({
 
   return (
     <div
-      style={{ bottom: `auto`, maxHeight: "100%" }}
       className="container-popup                                                                                         "
     >
       <button
