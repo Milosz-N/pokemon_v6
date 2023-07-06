@@ -5,6 +5,7 @@ import Header from "./Header";
 import Description from "./Description";
 import Stats from "./Stats";
 import Evolution from "./Evolution";
+import Varieties from "./Varieties";
 function Popup({
   index,
   setIndex,
@@ -12,6 +13,8 @@ function Popup({
   setPokemon,
   evolution,
   setEvolution,
+  varieties,
+  setVarieties
 }) {
   const current = pokemon.find((element) => element.id == index);
   useEffect(() => {
@@ -20,6 +23,10 @@ function Popup({
         .then((res) => res.json())
         .catch((ex) => ex)
         .then((values) => {
+        values.varieties.map(element => {if(element.is_default == false){
+            // console.log(element.pokemon.url)
+          }})
+          // console.log(values.varieties)
           const newState = pokemon.map((obj) => {
             if (obj.id == current.id) {
               return {
@@ -35,7 +42,8 @@ function Popup({
                 generation: values.generation.name
                   .replace("generation-", "")
                   .toUpperCase(),
-              };
+                  varieties:  values.varieties.filter(element => (element.is_default == false)).map(element => {return element.pokemon.url})
+                };
             }
 
             return obj;
@@ -111,7 +119,7 @@ function Popup({
       });
     }
   }, [current]);
-
+  // useEffect(()=>{console.log(current)},[current])
   return (
     <div
       className="container-popup                                                                                         "
@@ -133,6 +141,9 @@ function Popup({
         max={pokemon[pokemon.length - 1]}
       />
       <Description current={current} />
+      {/* {current.varieties.length > 0 &&       */}
+       {/* <Varieties current={current.varieties} id={current.id} setVariertes={setVarieties} varieties={varieties}/> */}
+{/* } */}
       <Stats current={current} />
       <Evolution
         pokemon={current}

@@ -10,6 +10,7 @@ const App = () => {
   const [index, setIndex] = useState(-1); // -1 - nie ma popup
   const [listItems, setListItems] = useState(30);
   const [evolution, setEvolution] = useState([]);
+  const [varieties, setVarieties] = useState([]);
 
   const [pokemon, setPokemon] = useState(
     new Array(1010).fill({
@@ -27,6 +28,7 @@ const App = () => {
       habitat: "",
       evolution_array: [],
       flavor_text: "",
+      varieties: ""
     })
   );
   useEffect(() => {
@@ -100,6 +102,8 @@ const App = () => {
             setPokemon={setPokemon}
             evolution={evolution}
             setEvolution={setEvolution}
+            varieties={varieties}
+            setVarieties={setVarieties}
           />
         )}
       </>
